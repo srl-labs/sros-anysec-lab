@@ -1,0 +1,556 @@
+# TiMOS-C-23.7.R1 cpm/x86_64 Nokia 7750 SR Copyright (c) 2000-2023 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Fri Jul 7 17:49:28 UTC 2023 by builder in /builds/237B/R1/panos/main/sros
+# Configuration format version 23.7 revision 0
+
+# Generated 2023-07-25T13:47:04.3+00:00 by admin from 172.31.255.29
+# Last modified 2023-07-17T19:45:48.1+00:00 by system (MD-CLI) from Console
+# Last saved 2023-07-25T13:46:55.8+00:00 by admin from 172.31.255.29
+
+configure {
+    card 1 {
+        card-type xcm-2se
+        mda 1 {
+            mda-type x2-s36-800g-qsfpdd-18.0t
+        }
+    }
+    chassis router chassis-number 1 {
+        power-shelf 1 {
+            admin-state enable
+            power-shelf-type ps-a4-shelf-dc
+            power-module 1 {
+                admin-state enable
+                power-module-type ps-a-dc-6000
+            }
+            power-module 2 {
+                admin-state enable
+                power-module-type ps-a-dc-6000
+            }
+            power-module 3 {
+                admin-state enable
+                power-module-type ps-a-dc-6000
+            }
+        }
+    }
+    log {
+        filter "1001" {
+            named-entry "10" {
+                description "Collect only events of major severity or higher"
+                action forward
+                match {
+                    severity {
+                        gte major
+                    }
+                }
+            }
+        }
+        log-id "100" {
+            description "Default Serious Errors Log"
+            filter "1001"
+            source {
+                main true
+            }
+            destination {
+                memory {
+                    max-entries 500
+                }
+            }
+        }
+        log-id "99" {
+            description "Default System Log"
+            source {
+                main true
+            }
+            destination {
+                memory {
+                    max-entries 500
+                }
+            }
+        }
+    }
+    macsec {
+        connectivity-association "CA_Test_MACSec" {
+            admin-state enable
+            description "Test Anysec"
+            clear-tag-mode none
+            cipher-suite gcm-aes-xpn-128
+            static-cak {
+                mka-hello-interval 5
+                pre-shared-key 1 {
+                    encryption-type aes-128-cmac
+                    cak "Ij4KFgr52goD5t0sRxnFb55RCSoES/mLhv8LHMHi4OM= hash2"
+                    cak-name "0123456789ABCDEF"
+                }
+            }
+        }
+    }
+    port 1/1/c2 {
+        admin-state enable
+        connector {
+            breakout c1-100g
+        }
+    }
+    port 1/1/c2/1 {
+        admin-state enable
+        description "to_R2_SR-1Se"
+        ethernet {
+            mode hybrid
+            encap-type dot1q
+        }
+    }
+    port 1/1/c3 {
+        admin-state enable
+        connector {
+            breakout c1-100g
+        }
+    }
+    port 1/1/c3/1 {
+        admin-state enable
+        description "to_R4_SR-7s"
+        ethernet {
+            mode hybrid
+            encap-type dot1q
+        }
+    }
+    port 1/1/c8 {
+        admin-state enable
+        connector {
+            breakout c1-100g
+        }
+    }
+    port 1/1/c8/1 {
+        admin-state enable
+        description "loop to 1/1/c9/1"
+        ethernet {
+            mode hybrid
+            encap-type dot1q
+        }
+    }
+    port 1/1/c9 {
+        admin-state enable
+        connector {
+            breakout c1-100g
+        }
+    }
+    port 1/1/c9/1 {
+        admin-state enable
+        description "loop to 1/1/c8/1"
+        ethernet {
+            mode hybrid
+            encap-type dot1q
+        }
+    }
+    router "Base" {
+        autonomous-system 65000
+        ecmp 2
+        router-id 3.3.3.3
+        interface "system" {
+            ipv4 {
+                primary {
+                    address 3.3.3.3
+                    prefix-length 32
+                }
+            }
+        }
+        interface "to_SR-1Se" {
+            description "to_SR-1x"
+            port 1/1/c2/1:2
+            ipv4 {
+                primary {
+                    address 10.2.3.3
+                    prefix-length 24
+                }
+            }
+        }
+        interface "to_SR-7s" {
+            description "to_SR-7s"
+            port 1/1/c3/1:2
+            ipv4 {
+                primary {
+                    address 10.3.4.3
+                    prefix-length 24
+                }
+            }
+        }
+        mpls-labels {
+            static-label-range 1968
+            sr-labels {
+                start 16000
+                end 24000
+            }
+            reserved-label-block "Anysec" {
+                start-label 2000
+                end-label 2999
+            }
+        }
+        bgp {
+            rapid-withdrawal true
+            family {
+                ipv4 true
+                vpn-ipv4 true
+                ipv6 true
+                vpn-ipv6 true
+                l2-vpn true
+                route-target true
+                evpn true
+                label-ipv4 true
+                label-ipv6 true
+                sr-policy-ipv4 true
+                sr-policy-ipv6 true
+            }
+            local-as {
+                as-number 65000
+            }
+            rapid-update {
+                vpn-ipv4 true
+                vpn-ipv6 true
+                evpn true
+                label-ipv4 true
+                label-ipv6 true
+            }
+            multipath {
+                max-paths 2
+            }
+            group "ibgp" {
+                keepalive 5
+                min-route-advertisement 5
+                type internal
+                peer-as 65000
+                local-address 3.3.3.3
+                peer-ip-tracking true
+            }
+            neighbor "1.1.1.1" {
+                description "R2_sr-1se"
+                group "ibgp"
+            }
+            neighbor "4.4.4.4" {
+                description "R4_sr-7s"
+                group "ibgp"
+            }
+        }
+        isis 0 {
+            admin-state enable
+            advertise-router-capability as
+            level-capability 2
+            traffic-engineering true
+            segment-routing {
+                admin-state enable
+                prefix-sid-range {
+                    global
+                }
+            }
+            interface "system" {
+                admin-state enable
+                passive true
+                ipv4-node-sid {
+                    index 303
+                }
+            }
+            interface "to_SR-1Se" {
+                admin-state enable
+                interface-type point-to-point
+            }
+            interface "to_SR-7s" {
+                admin-state enable
+                interface-type point-to-point
+            }
+            level 2 {
+                wide-metrics-only true
+            }
+        }
+    }
+    service {
+        customer "1" {
+        }
+        epipe "1001" {
+            admin-state enable
+            description "teste SR"
+            customer "1"
+        }
+        sdp 222 {
+            admin-state enable
+            description "To R2 "
+            delivery-type mpls
+            sr-isis true
+            far-end {
+                ip-address 2.2.2.2
+            }
+        }
+        vpls "1002" {
+            admin-state enable
+            customer "1"
+        }
+        vprn "1003" {
+            admin-state enable
+            customer "1"
+            autonomous-system 65000
+            router-id 3.3.3.3
+            bgp-ipvpn {
+                mpls {
+                    admin-state enable
+                    route-distinguisher "3.3.3.3:1003"
+                    vrf-target {
+                        community "target:65000:1003"
+                    }
+                    auto-bind-tunnel {
+                        resolution filter
+                        resolution-filter {
+                            sr-isis true
+                        }
+                    }
+                }
+            }
+            interface "loopback" {
+                loopback true
+                ipv4 {
+                    primary {
+                        address 3.3.3.3
+                        prefix-length 32
+                    }
+                }
+            }
+        }
+    }
+    sfm 1 {
+        sfm-type sfm-2se
+    }
+    sfm 4 {
+        sfm-type sfm-2se
+    }
+    system {
+        name "R3-sr-2se"
+        bluetooth {
+            advertising-timeout 30
+        }
+        security {
+            aaa {
+                local-profiles {
+                    profile "administrative" {
+                        default-action permit-all
+                        entry 10 {
+                            match "configure system security"
+                            action permit
+                        }
+                        entry 20 {
+                            match "show system security"
+                            action permit
+                        }
+                        entry 30 {
+                            match "tools perform security"
+                            action permit
+                        }
+                        entry 40 {
+                            match "tools dump security"
+                            action permit
+                        }
+                        entry 50 {
+                            match "admin system security"
+                            action permit
+                        }
+                        entry 100 {
+                            match "configure li"
+                            action deny
+                        }
+                        entry 110 {
+                            match "show li"
+                            action deny
+                        }
+                        entry 111 {
+                            match "clear li"
+                            action deny
+                        }
+                        entry 112 {
+                            match "tools dump li"
+                            action deny
+                        }
+                        netconf {
+                            base-op-authorization {
+                                action true
+                                cancel-commit true
+                                close-session true
+                                commit true
+                                copy-config true
+                                create-subscription true
+                                delete-config true
+                                discard-changes true
+                                edit-config true
+                                get true
+                                get-config true
+                                get-data true
+                                get-schema true
+                                kill-session true
+                                lock true
+                                validate true
+                            }
+                        }
+                    }
+                    profile "default" {
+                        entry 10 {
+                            match "exec"
+                            action permit
+                        }
+                        entry 20 {
+                            match "exit"
+                            action permit
+                        }
+                        entry 30 {
+                            match "help"
+                            action permit
+                        }
+                        entry 40 {
+                            match "logout"
+                            action permit
+                        }
+                        entry 50 {
+                            match "password"
+                            action permit
+                        }
+                        entry 60 {
+                            match "show config"
+                            action deny
+                        }
+                        entry 65 {
+                            match "show li"
+                            action deny
+                        }
+                        entry 66 {
+                            match "clear li"
+                            action deny
+                        }
+                        entry 67 {
+                            match "tools dump li"
+                            action deny
+                        }
+                        entry 68 {
+                            match "state li"
+                            action deny
+                        }
+                        entry 70 {
+                            match "show"
+                            action permit
+                        }
+                        entry 75 {
+                            match "state"
+                            action permit
+                        }
+                        entry 80 {
+                            match "enable-admin"
+                            action permit
+                        }
+                        entry 90 {
+                            match "enable"
+                            action permit
+                        }
+                        entry 100 {
+                            match "configure li"
+                            action deny
+                        }
+                    }
+                }
+            }
+            ssh {
+                preserve-key true
+                server-cipher-list-v2 {
+                    cipher 190 {
+                        name aes256-ctr
+                    }
+                    cipher 192 {
+                        name aes192-ctr
+                    }
+                    cipher 194 {
+                        name aes128-ctr
+                    }
+                    cipher 200 {
+                        name aes128-cbc
+                    }
+                    cipher 205 {
+                        name 3des-cbc
+                    }
+                    cipher 225 {
+                        name aes192-cbc
+                    }
+                    cipher 230 {
+                        name aes256-cbc
+                    }
+                }
+                client-cipher-list-v2 {
+                    cipher 190 {
+                        name aes256-ctr
+                    }
+                    cipher 192 {
+                        name aes192-ctr
+                    }
+                    cipher 194 {
+                        name aes128-ctr
+                    }
+                    cipher 200 {
+                        name aes128-cbc
+                    }
+                    cipher 205 {
+                        name 3des-cbc
+                    }
+                    cipher 225 {
+                        name aes192-cbc
+                    }
+                    cipher 230 {
+                        name aes256-cbc
+                    }
+                }
+                server-mac-list-v2 {
+                    mac 200 {
+                        name hmac-sha2-512
+                    }
+                    mac 210 {
+                        name hmac-sha2-256
+                    }
+                    mac 215 {
+                        name hmac-sha1
+                    }
+                    mac 220 {
+                        name hmac-sha1-96
+                    }
+                    mac 225 {
+                        name hmac-md5
+                    }
+                    mac 240 {
+                        name hmac-md5-96
+                    }
+                }
+                client-mac-list-v2 {
+                    mac 200 {
+                        name hmac-sha2-512
+                    }
+                    mac 210 {
+                        name hmac-sha2-256
+                    }
+                    mac 215 {
+                        name hmac-sha1
+                    }
+                    mac 220 {
+                        name hmac-sha1-96
+                    }
+                    mac 225 {
+                        name hmac-md5
+                    }
+                    mac 240 {
+                        name hmac-md5-96
+                    }
+                }
+            }
+            user-params {
+                local-user {
+                    user "admin" {
+                        password "$2y$10$TQrZlpBDra86.qoexZUzQeBXDY1FcdDhGWdD9lLxMuFyPVSm0OGy6"
+                        access {
+                            console true
+                        }
+                        console {
+                            member ["administrative"]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
