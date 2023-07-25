@@ -1,7 +1,7 @@
 
 # CLAB SROS FP5 AnySec Demo
 
-This lab provides a simple Anysec Demo based on CLAB and Nokia SROS FP5 vSIMs.
+This lab provides an Anysec Demo based on CLAB and Nokia SROS FP5 vSIMs.
 ANYsec provides low-latency, native encryption for any transport (IP, MPLS, segment routing, Ethernet or VLAN), on any service, at any time and for any load conditions without impacting performance.
 
 For Anysec refer to https://www.nokia.com/networks/technologies/fp5/
@@ -67,9 +67,11 @@ The setup has:
 
 
 
+
 The physical setup is the following:
 
 ![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Physical.jpg)
+
 
 
 The logical setup is the following:
@@ -99,24 +101,80 @@ It is also possible to reach those nodes directly via their hostname, defined in
 # List the containers
 clab inspect -a
 # reach a SROS node via SSH
-ssh admin@clab-clab-hw_models_FP5_SR-1-SR-1-24D
+ssh admin@clab-anysec-SR-1x-92S
 ```
-
 
 
 ## Wireshark
 
+For details about Packet capture & Wireshark at containerlab refer to:
+https://containerlab.dev/manual/wireshark/#capturing-with-tcpdumpwireshark
 
 
+Follows an example on how to list the interfaces (links) of a given container and performe a packet capture:
+```bash
+# list the containers
+clab inspect -a 
+# list the interfaces (links) of a given container
+ip netns exec clab-anysec-SR-1x-92S ip link
+# Start a capture and display packets in the session
+ip netns exec clab-anysec-SR-1x-92S tcpdump -nni eth1
+# Start a capture and store the packets in the file
+ip netns exec clab-anysec-SR-1x-92S tcpdump -nni eth1 -w capture_file.pcap
+```
+
+
+Besides displaying the packets to the session or store in a file, its possible to open then remotly using SSH.
 
 Wireshark does not have native support for decoding MACsec (802.1AE) headers.
 Nokia has an internal version with a protocol dissector for MACsec / 802.1a headers.
-This is the output:
+This is the output comparison between the public wireshark and the Nokia's version:
 
 
 ![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Wireshark.png)
 
 
+
+## Execute the test
+
+Once the Tcpdump capture is running you may start the test by testing ICMP from R1 to R2 within VPRN 1003:
+```bash
+A:admin@R1_sr-1x-92s# ping 2.2.2.2 router-instance 1003 
+PING 2.2.2.2 56 data bytes
+64 bytes from 2.2.2.2: icmp_seq=1 ttl=64 time=8.35ms.
+64 bytes from 2.2.2.2: icmp_seq=2 ttl=64 time=2.63ms.
+64 bytes from 2.2.2.2: icmp_seq=3 ttl=64 time=2.26ms.
+64 bytes from 2.2.2.2: icmp_seq=4 ttl=64 time=2.15ms.
+64 bytes from 2.2.2.2: icmp_seq=5 ttl=64 time=2.26ms.
+
+---- 2.2.2.2 PING Statistics ----
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min = 2.15ms, avg = 3.53ms, max = 8.35ms, stddev = 2.42ms
+
+[/]
+A:admin@R1_sr-1x-92s# 
+```
+
+
+Under normal operation, ping will use SR-ISIS directly from R1 to R2
+You may shut the link between these nodes to force the use of SR-ISIS that goes through R4 and R3
+
+
+
+## Outputs
+
+Use the following commands to retrieve outputs from Anysec operation:
+
+
+```bash
+show macsec connectivity-association "CA_Test_MACSec" detail 
+show anysec tunnel-encryption detail 
+show router 1003 route-table 2.2.2.2/32 extensive 
+show router tunnel-table detail 
+show router mpls-labels summary 
+show router "1003" route-table 
+show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt   
+```
 
 
 
