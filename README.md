@@ -5,6 +5,7 @@ This lab provides a simple Anysec Demo based on CLAB and Nokia SROS FP5 vSIMs.
 ANYsec provides low-latency, native encryption for any transport (IP, MPLS, segment routing, Ethernet or VLAN), on any service, at any time and for any load conditions without impacting performance.
 
 For Anysec refer to https://www.nokia.com/networks/technologies/fp5/
+
 For CLAB refer to https://containerlab.dev/.
 
 
@@ -13,7 +14,7 @@ For CLAB refer to https://containerlab.dev/.
 Anysec is a Nokia network encryption solution available with the new FP5 models in SROS 23.3R3 and 23.7R1. 
 It is quantum safe, low latency line rate encryption, and aims to be the future network encryption standard in the industry.
 It is a simple concept, based on MacSec standards but more flexible, capable of L2, L2.5 and L3 encryption.
-This lab 
+
 
 
 ## Clone the git lab to your server
@@ -52,6 +53,7 @@ The setup contains four SROS FP5 routers with 23.7R1, howhever only two of them 
 •	SR-14s (FP5 only)
 
 
+
 The setup has:
 
 •	Anysec between R1 and R2 (not supported in SR-2s and SR-7s/14s in this release )
@@ -64,14 +66,15 @@ The setup has:
 
 
 
+
 The physical setup is the following:
 
-![pic1](https://user-images.githubusercontent.com/86619221/205601635-609eb772-833b-4ac9-b2ab-dc3ed661c4a1.JPG)
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Physical.jpg)
 
 
 The logical setup is the following:
 
-![pic1](https://user-images.githubusercontent.com/86619221/205601635-609eb772-833b-4ac9-b2ab-dc3ed661c4a1.JPG)
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Logical.jpg)
 
 
 
@@ -111,7 +114,7 @@ Nokia has an internal version with a protocol dissector for MACsec / 802.1a head
 This is the output:
 
 
-![pic1](https://user-images.githubusercontent.com/86619221/205601635-609eb772-833b-4ac9-b2ab-dc3ed661c4a1.JPG)
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Wireshark.png)
 
 
 
@@ -120,6 +123,7 @@ This is the output:
 ## Conclusion
 
 Does Anysec work with vSIM at CLAB?
+
 Yes for functional tests, but obviously not for performance/latency.
 CLAB and vSIM can be used to validate the configuration (functional tests Encryption)
 Limited feature with no support yet for modular Chassis (how about multi-complex FP5 cards/nodes)
