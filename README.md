@@ -3,11 +3,8 @@
 
 ANYsec provides low-latency, native encryption for any transport (IP, MPLS, segment routing, Ethernet or VLAN), on any service, at any time and for any load conditions without impacting performance.
 
-This lab provides an Anysec Demo based on CLAB and Nokia SROS FP5 vSIMs.
+This lab provides an Anysec (https://www.nokia.com/networks/technologies/fp5/) Demo based on CLAB (https://containerlab.dev/) and Nokia SROS FP5 vSIMs.
 
-For Anysec refer to https://www.nokia.com/networks/technologies/fp5/
-
-For CLAB refer to https://containerlab.dev/.
 
 
 
@@ -56,7 +53,8 @@ The setup contains four SROS FP5 routers with 23.7R1, howhever only two of them 
 
 
 
-The physical setup is the following:
+
+The physical setup is the following (for the tests you may shut the interface as ilustrated):
 
 ![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Physical.jpg)
 
@@ -76,7 +74,8 @@ The setup has:
 
 
 
-The logical setup is the following:
+
+The logical setup is the following (for the tests you may shut the interface as ilustrated):
 
 ![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Logical.jpg)
 
@@ -113,9 +112,12 @@ For details about Packet capture & Wireshark at containerlab refer to:
 https://containerlab.dev/manual/wireshark/#capturing-with-tcpdumpwireshark
 
 
+You may found a pcap file with Anysec packets in the files above in this project. 
+You may perform your own capture as explained below.
+
 Follows an example on how to list the interfaces (links) of a given container and performe a packet capture:
 ```bash
-# list the containers
+# list the containers running in the server
 clab inspect -a 
 # list the interfaces (links) of a given container
 ip netns exec clab-anysec-SR-1x-92S ip link
@@ -126,15 +128,19 @@ ip netns exec clab-anysec-SR-1x-92S tcpdump -nni eth1 -w capture_file.pcap
 ```
 
 
-Besides displaying the packets to the session or store in a file, its possible to open then remotly using SSH.
+Besides displaying the packets to the session or store in a file, its possible to open then remotely using SSH.
 
-Wireshark does not have native support for decoding MACsec (802.1AE) headers.
-Nokia has an internal version with a protocol dissector for MACsec / 802.1a headers.
-This is the output comparison between the public wireshark and the Nokia's version:
+Windows users should use WSL and invoke the command similar to the following:
+```bash
+ssh $containerlab_host_address "ip netns exec $lab_node_name tcpdump -U -nni $if_name -w -" | /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
+Example:
+ssh root@10.82.182.179 "ip netns exec clab-anysec-SR-1x-92S tcpdump -U -nni eth1 -w -" | /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
+```
 
+###Install WSL 
+Open PowerShell or Windows Command Prompt in administrator mode by right-clicking and selecting "Run as administrator", enter the wsl --install command, then restart your machine.
 
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Wireshark.png)
-
+See derails here: https://learn.microsoft.com/en-us/windows/wsl/install
 
 
 ## Execute the test
@@ -158,8 +164,19 @@ A:admin@R1_sr-1x-92s#
 ```
 
 
-Under normal operation, ping will use SR-ISIS directly from R1 to R2
+Note: Under normal operation, ping will use SR-ISIS directly from R1 to R2
 You may shut the link between these nodes to force the use of SR-ISIS that goes through R4 and R3
+
+
+Wireshark does not have native support for decoding MACsec (802.1AE) headers.
+Nokia has an internal version with a protocol dissector for MACsec / 802.1a headers.
+This is the output comparison between the public wireshark and the Nokia's version:
+
+
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Wireshark.png)
+
+
+
 
 
 
@@ -182,11 +199,13 @@ show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt
 
 ## Conclusion
 
-Does Anysec work with vSIM at CLAB?
+Does Anysec work with CLAB vSIMs?
 
 Yes for functional tests, but obviously not for performance/latency.
-CLAB and vSIM can be used to validate the configuration (functional tests Encryption)
-Limited feature with no support yet for modular Chassis (how about multi-complex FP5 cards/nodes)
-Setup is fully functional with anysec stats increase and packets are encrypted as seen in the TCPDUMP capture
+CLAB and vSIMs can be used to test and validate the configurations. 
+Setup is fully functional with anysec stats increase and packets are encrypted as seen in the TCPDUMP capture.
+Anysec is still a limited feature with no support yet for modular Chassis. 
+More to come in the upcoming releases!
+
 
 
