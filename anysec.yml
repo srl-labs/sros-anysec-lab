@@ -9,7 +9,7 @@ topology:
       type: >-
         cp: cpu=2 ram=4 chassis=sr-1x-92s slot=A card=cpm-1x/i80-200g-sfpdd+12-800g-qsfpdd-1x ___ 
         lc: cpu=2 ram=4 max_nics=10 chassis=sr-1x-92s slot=1 card=i80-200g-sfpdd+12-800g-qsfpdd-1x mda/1=m80-200g-sfpdd+12-800g-qsfpdd-1x
-      license: ../r23_license.lic
+      license: ./r23_license.lic
       startup-config: configs/sr-1x-92s_config.txt
 
     # OK
@@ -19,7 +19,7 @@ topology:
       type: >-
         cp: cpu=4 ram=6 chassis=SR-1se slot=A card=cpm-1se ___ 
         lc: cpu=4 ram=6 max_nics=10 chassis=SR-1se slot=1 card=imm36-800g-qsfpdd mda/1=ms36-800g-qsfpdd
-      license: ../r23_license.lic
+      license: ./r23_license.lic
       startup-config: configs/sr-1se_config.txt
     
     # Ok
@@ -30,7 +30,7 @@ topology:
       type: >-
         cp: cpu=2 min_ram=4 chassis=sr-2se slot=A sfm=sfm-2se card=cpm-2se ___
         lc: cpu=4 min_ram=8 max_nics=10 chassis=sr-2se slot=1 sfm=sfm-2se card=xcm-2se mda/1=x2-s36-800g-qsfpdd-18.0t       
-      license: ../r23_license.lic
+      license: ./r23_license.lic
       startup-config: configs/sr-2se_config.txt
       
     # Ok
@@ -40,7 +40,7 @@ topology:
       type: >-
         cp: cpu=4 ram=6 chassis=sr-7s slot=A sfm=sfm2-s card=cpm2-s ___ 
         lc: cpu=4 ram=8 max_nics=10 chassis=sr-7s slot=1 sfm=sfm2-s card=xcm2-7s mda/1=x2-s36-800g-qsfpdd-18.0t 
-      license: ../r23_license.lic
+      license: ./r23_license.lic
       startup-config: configs/sr-7s_config.txt
 
   links:

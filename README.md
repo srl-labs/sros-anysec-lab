@@ -1,8 +1,9 @@
 
 # CLAB SROS FP5 AnySec Demo
 
-This lab provides an Anysec Demo based on CLAB and Nokia SROS FP5 vSIMs.
 ANYsec provides low-latency, native encryption for any transport (IP, MPLS, segment routing, Ethernet or VLAN), on any service, at any time and for any load conditions without impacting performance.
+
+This lab provides an Anysec Demo based on CLAB and Nokia SROS FP5 vSIMs.
 
 For Anysec refer to https://www.nokia.com/networks/technologies/fp5/
 
@@ -54,6 +55,14 @@ The setup contains four SROS FP5 routers with 23.7R1, howhever only two of them 
 
 
 
+
+The physical setup is the following:
+
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Physical.jpg)
+
+
+
+
 The setup has:
 
 •	Anysec between R1 and R2 (not supported in SR-2s and SR-7s/14s in this release )
@@ -64,13 +73,6 @@ The setup has:
 
 •	Services: VPRN 1003
 
-
-
-
-
-The physical setup is the following:
-
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Physical.jpg)
 
 
 
