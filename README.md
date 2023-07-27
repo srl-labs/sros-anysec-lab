@@ -3,7 +3,7 @@
 
 ANYsec provides low-latency, native encryption for any transport (IP, MPLS, segment routing, Ethernet or VLAN), on any service, at any time and for any load conditions without impacting performance.
 
-This lab provides an Anysec (https://www.nokia.com/networks/technologies/fp5/) Demo based on CLAB (https://containerlab.dev/) and Nokia SROS FP5 vSIMs.
+This lab provides an Anysec demo (https://www.nokia.com/networks/technologies/fp5/) based on Nokia SROS FP5 vSIMs running at CLAB (https://containerlab.dev/).
 
 
 
@@ -194,6 +194,33 @@ show router mpls-labels summary
 show router "1003" route-table 
 show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt   
 ```
+
+
+
+## Tests
+
+### Test 1 - Shut/No shut the link between R1 and R2 
+
+Upon shut/no shut verify Anysec is still working but using a new SR-ISIS tunnel
+```bash
+show router "1003" route-table
+show router 1003 route-table 2.2.2.2/32 extensive
+show router 1003 route-table 2.2.2.2/32 extensive
+show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt   
+```
+
+
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_test1_shut_link.jpg)
+
+
+
+### Test 2 - Disable Anysec at R1 and R2 
+
+Upon Disabe Anysec verify ping is still working but unecripted
+Re-enable Anysec and verify traffic is encrypted again
+
+
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_test2_disable_Anysec.jpg)
 
 
 
