@@ -52,7 +52,13 @@ The stepts are:
 -docker images | grep -E "srlinux|vr-sros"
 ```
 
-
+Note: After import the image, edit the yml file with the correct location.
+```bash
+# replace this 
+      image: registry.srlinux.dev/pub/vr-sros:23.7.R1
+with this:
+      image: vrnetlab/vr-sros:23.7.R3
+```
 
 ### License file
 
@@ -111,6 +117,7 @@ The logical setup is the following (for the tests you may shut the interface as 
 ## Deploy the lab setup
 
 Use the comand below to deploy the lab:
+Note: If you imported the SROS image to docker then edit the yml file with the correct image location.
 
 ```bash
 # deploy a lab
