@@ -37,7 +37,7 @@ If you don't have access to it, then you must get the SROS image and manually im
 The stepts are:
 ```bash
 # Clone vrnetlab
--git clone https://github.com/hellt/vrnetlab && cd vrnetlab
+git clone https://github.com/hellt/vrnetlab && cd vrnetlab
 
 # Download qcow2 vSIM image from Nokia support portal (https://customer.nokia.com/support/s) or get one from your Nokia contact. 
 
@@ -49,14 +49,14 @@ The stepts are:
 
 # Verify existing docker images
 
--docker images | grep -E "srlinux|vr-sros"
+docker images | grep -E "srlinux|vr-sros"
 ```
 
 Note: After import the image, edit the yml file with the correct location.
 ```bash
 # replace this 
       image: registry.srlinux.dev/pub/vr-sros:23.7.R1
-with this:
+# with this:
       image: vrnetlab/vr-sros:23.7.R3
 ```
 
