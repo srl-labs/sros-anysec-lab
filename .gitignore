@@ -1,2 +1,4 @@
 clab-anysec/
-r23_license.lic
+*.key
+*.log
+.*.clab.y*ml.bak
