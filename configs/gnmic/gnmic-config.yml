@@ -1,0 +1,183 @@
+# Copyright 2020 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
+username: admin
+password: admin
+# skip-verify: true
+insecure: true
+port: 57400
+timeout: 10s
+encoding: json_ietf
+
+targets:
+  SR-1x-92S:57400:
+  SR-1se:57400:
+  SR-2se:57400:
+  SR-7s:57400:
+
+
+subscriptions:
+
+  sros_if_oper_state:
+    paths:
+      - /state/port[port-id=*]/oper-state
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_if_stats:
+    paths:
+      - /state/port[port-id=*]/statistics
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_if_traffic_rate:
+    paths:
+      - /state/port[port-id=*]/ethernet/oper-speed
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_bgp_stats:
+    paths:
+      - /state/router[router-name=*]/bgp/statistics
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_bgp_up_peers:
+    paths:
+      - state/router[router-name=*]/bgp/convergence/family[family-type=ipv4]
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_bgp_neighbor_stats:
+    paths:
+      - /state/router[router-name=*]/bgp/neighbor[ip-address=*]/statistics
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_bgp_neighbor_session_state:
+    paths:
+      - /state/router[router-name=*]/bgp/neighbor[ip-address=*]/statistics/session-state
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_ipv4_stats:
+    paths:
+      - /state/router[router-name=*]/route-table/unicast/ipv4/statistics
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_ipv4_stats_direct:
+    paths:
+      - /state/router[router-name=*]/route-table/unicast/ipv4/statistics/direct
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_ipv4_stats_bgp:
+    paths:
+      - /state/router[router-name=*]/route-table/unicast/ipv4/statistics/bgp
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros_ipv4_routes:
+    paths:
+      - /state/router[router-name=*]/route-table/unicast/ipv4/route[ipv4-prefix=*]
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+  
+  sros_bgp_routes_stats:
+    paths:
+      - /state/router[router-name=*]/route-table/unicast/ipv4/statistics/bgp
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s  
+
+  sros_bgp_routes_active:
+    paths:
+      - /state/router[router-name=*]/bgp/neighbor[ip-address=*]/statistics/family-prefix/ipv4/active
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s 
+
+  sros_bgp_used_routes:
+    paths:
+      - /state/router[router-name=*]/bgp/rib/ipv6-unicast/local-rib/routes[prefix=*][neighbor=*][owner=*][router-instance-origin=*][path-id=*]/used-route
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s 
+
+  sros_bgp_anysec_peer:
+    paths:
+      - /state/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s 
+
+  sros_bgp_anysec_sec_termination_policy:
+    paths:
+      - /state/anysec/tunnel-encryption/security-termination-policy[policy-name=*]
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s 
+
+  sros_bgp_anysec_mka_udp_port_oper_state:
+    paths:
+      - /state/anysec/mka-udp-port-oper-state
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s 
+
+
+
+
+outputs:
+  prom:
+    type: prometheus
+    listen: :9273
+    path: /metrics
+    metric-prefix: gnmic
+    append-subscription-name: true
+    export-timestamps: true
+    debug: false
+    event-processors:
+      - trim-prefixes
+      - up-down-map
+  # stdout:
+  #   type: file
+  #   file-type: stdout
+  #   event-processors:
+  #     - proc-convert-strings-to-int
+  #     - trim-prefixes
+
+processors:
+  trim-prefixes:
+    event-strings:
+      value-names:
+        - ".*"
+      transforms:
+        - path-base:
+            apply-on: "name"
+  up-down-map:
+    event-strings:
+      value-names:
+        - oper-state
+      transforms:
+        - replace:
+            apply-on: "value"
+            old: "up"
+            new: "1"
+        - replace:
+            apply-on: "value"
+            old: "down"
+            new: "0"

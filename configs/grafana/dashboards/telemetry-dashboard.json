@@ -1,0 +1,3655 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "iteration": 1684922770015,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80000
+              }
+            ]
+          },
+          "unit": "µs"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "gnmic_sros_route_metric_metric{source=\"$NE\"}",
+          "format": "time_series",
+          "legendFormat": "Delay to {{tunnel_ipv4_prefix}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "$NE metric",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "nexthop_nexthop_index": true,
+              "router_router_name": true,
+              "subscription_name": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value": "Latency metric (ms)",
+              "source": "Source router"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "editedFlag": false,
+      "flowchartsData": {
+        "allowDrawio": true,
+        "editorTheme": "kennedy",
+        "editorUrl": "https://embed.diagrams.net/",
+        "flowcharts": [
+          {
+            "bgColor": "#495766",
+            "center": true,
+            "csv": "## See more information for the syntax at https://drawio-app.com/import-from-csv-to-drawio/\n##\n## Example CSV. Use ## for comments and # for configuration.\n## The following names are reserved and should not be used (or ignored):\n## id, tooltip, placeholder(s), link and label (see below)\n##\n#\n## Node label with placeholders and HTML.\n## Default is '%name_of_first_column%'.\n#\n# label: %name%<br><i style=\"color:gray;\">%position%</i><br><a href=\"mailto:%email%\">Email</a>\n#\n## Node style (placeholders are replaced once).\n## Default is the current style for nodes.\n#\n# style: label;image=%image%;whiteSpace=wrap;html=1;rounded=1;fillColor=%fill%;strokeColor=%stroke%;\n#\n## Parent style for nodes with child nodes (placeholders are replaced once).\n#\n# parentstyle: swimlane;whiteSpace=wrap;html=1;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;\n#\n## Optional column name that contains a reference to a named style in styles.\n## Default is the current style for nodes.\n#\n# stylename: -\n#\n## JSON for named styles of the form {\"name\": \"style\", \"name\": \"style\"} where style is a cell style with\n## placeholders that are replaced once.\n#\n# styles: -\n#\n## Optional column name that contains a reference to a named label in labels.\n## Default is the current label.\n#\n# labelname: -\n#\n## JSON for named labels of the form {\"name\": \"label\", \"name\": \"label\"} where label is a cell label with\n## placeholders.\n#\n# labels: -\n#\n## Uses the given column name as the identity for cells (updates existing cells).\n## Default is no identity (empty value or -).\n#\n# identity: -\n#\n## Uses the given column name as the parent reference for cells. Default is no parent (empty or -).\n## The identity above is used for resolving the reference so it must be specified.\n#\n# parent: -\n#\n## Adds a prefix to the identity of cells to make sure they do not collide with existing cells (whose\n## IDs are numbers from 0..n, sometimes with a GUID prefix in the context of realtime collaboration).\n## Default is csvimport-.\n#\n# namespace: csvimport-\n#\n## Connections between rows (\"from\": source colum, \"to\": target column).\n## Label, style and invert are optional. Defaults are '', current style and false.\n## If placeholders are used in the style, they are replaced with data from the source.\n## An optional placeholders can be set to target to use data from the target instead.\n## In addition to label, an optional fromlabel and tolabel can be used to name the column\n## that contains the text for the label in the edges source or target (invert ignored).\n## The label is concatenated in the form fromlabel + label + tolabel if all are defined.\n## The target column may contain a comma-separated list of values.\n## Multiple connect entries are allowed.\n#\n# connect: {\"from\": \"manager\", \"to\": \"name\", \"invert\": true, \"label\": \"manages\", \\\n#          \"style\": \"curved=1;endArrow=blockThin;endFill=1;fontSize=11;\"}\n# connect: {\"from\": \"refs\", \"to\": \"id\", \"style\": \"curved=1;fontSize=11;\"}\n#\n## Node x-coordinate. Possible value is a column name. Default is empty. Layouts will\n## override this value.\n#\n# left: \n#\n## Node y-coordinate. Possible value is a column name. Default is empty. Layouts will\n## override this value.\n#\n# top: \n#\n## Node width. Possible value is a number (in px), auto or an @ sign followed by a column\n## name that contains the value for the width. Default is auto.\n#\n# width: auto\n#\n## Node height. Possible value is a number (in px), auto or an @ sign followed by a column\n## name that contains the value for the height. Default is auto.\n#\n# height: auto\n#\n## Padding for autosize. Default is 0.\n#\n# padding: -12\n#\n## Comma-separated list of ignored columns for metadata. (These can be\n## used for connections and styles but will not be added as metadata.)\n#\n# ignore: id,image,fill,stroke,refs,manager\n#\n## Column to be renamed to link attribute (used as link).\n#\n# link: url\n#\n## Spacing between nodes. Default is 40.\n#\n# nodespacing: 40\n#\n## Spacing between levels of hierarchical layouts. Default is 100.\n#\n# levelspacing: 100\n#\n## Spacing between parallel edges. Default is 40. Use 0 to disable.\n#\n# edgespacing: 40\n#\n## Name or JSON of layout. Possible values are auto, none, verticaltree, horizontaltree,\n## verticalflow, horizontalflow, organic, circle or a JSON string as used in Layout, Apply.\n## Default is auto.\n#\n# layout: auto\n#\n## ---- CSV below this line. First line are column names. ----\nname,position,id,location,manager,email,fill,stroke,refs,url,image\nEvan Miller,CFO,emi,Office 1,,me@example.com,#dae8fc,#6c8ebf,,https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-9-2-128.png\nEdward Morrison,Brand Manager,emo,Office 2,Evan Miller,me@example.com,#d5e8d4,#82b366,,https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png\nRon Donovan,System Admin,rdo,Office 3,Evan Miller,me@example.com,#d5e8d4,#82b366,\"emo,tva\",https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-2-128.png\nTessa Valet,HR Director,tva,Office 4,Evan Miller,me@example.com,#d5e8d4,#82b366,,https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-3-128.png\n",
+            "download": false,
+            "enableAnim": true,
+            "grid": false,
+            "lock": true,
+            "name": "Main",
+            "scale": true,
+            "tooltip": true,
+            "type": "xml",
+            "url": "http://<YourUrl>/<Your XML/drawio file/api>",
+            "xml": "<mxfile host=\"embed.diagrams.net\" modified=\"2022-11-02T07:21:38.084Z\" agent=\"5.0 (Windows)\" etag=\"znqMiVamxTDAvhskvDJG\" version=\"20.4.1\" type=\"embed\"><diagram id=\"e4Y01WUl_EAPae-yQ_x9\" name=\"Page-1\">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</diagram></mxfile>",
+            "zoom": "100%"
+          }
+        ]
+      },
+      "format": "short",
+      "graphId": "flowchart_2",
+      "gridPos": {
+        "h": 20,
+        "w": 21,
+        "x": 3,
+        "y": 0
+      },
+      "id": 2,
+      "newFlag": false,
+      "rulesData": {
+        "rulesData": [
+          {
+            "aggregation": "current",
+            "alias": "R1_to_client1_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 1,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r1:57400:1/1/c1/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "89",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "89",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R1_to_client1_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 2,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r1:57400:1/1/c1/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "111",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "111",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R1_to_R3_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 3,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r1:57400:1/1/c2/1:out",
+            "rangeData": [],
+            "reduce": false,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "101",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "101",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R1_to_R3_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 4,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r1:57400:1/1/c2/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "78",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "78",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R1_to_R4_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 5,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r1:57400:1/1/c3/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "103",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "103",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R1_to_R4_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "#f53636e6",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 6,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r1:57400:1/1/c3/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "81",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "81",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R2_to_client2_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "#f53636e6",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 7,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r2:57400:1/1/c1/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "109",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "109",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R2_to_client2_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 8,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r2:57400:1/1/c1/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "91",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "91",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R3_to_R5_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 9,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r3:57400:1/1/c3/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "93",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "93",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R3_to_R5_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 10,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r3:57400:1/1/c3/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "79",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "79",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R3_to_R4_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 11,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r3:57400:1/1/c2/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "97",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "97",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R3_to_R4_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 12,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r3:57400:1/1/c2/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "80",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "80",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R4_to_R6_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 13,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r4:57400:1/1/c3/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "95",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "95",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R4_to_R6_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 14,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r4:57400:1/1/c3/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "82",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "82",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R5_to_R2_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 15,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r5:57400:1/1/c1/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "105",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "105",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R5_to_R2_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 16,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r5:57400:1/1/c1/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "85",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "85",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R5_to_R6_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 17,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r5:57400:1/1/c2/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "99",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "99",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R5_to_R6_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 18,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r5:57400:1/1/c2/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "83",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "83",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R6_to_R2_out",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 19,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r6:57400:1/1/c1/1:out",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "107",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "107",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "R6_to_R2_in",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 1,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": true,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#969696",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#1F60C4",
+                "comparator": "ge",
+                "level": 0,
+                "value": 500000
+              },
+              {
+                "color": "#37872D",
+                "comparator": "ge",
+                "level": 0,
+                "value": 2000000
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": 5000000
+              }
+            ],
+            "order": 20,
+            "overlayIcon": false,
+            "pattern": "clab-sr-r6:57400:1/1/c1/1:in",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "84",
+                "style": "strokeColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "84",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "bps",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R1_to_R3",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 21,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r1:57400:to_R3",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "135",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "135",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R1_to_R4",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 22,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r1:57400:to_R4",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "134",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "134",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R3_to_R5",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 23,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r3:57400:to_R5",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "130",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "130",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R3_to_R4",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 24,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r3:57400:to_R4",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "131",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "131",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R4_to_R6",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 25,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r4:57400:to_R6",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "138",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "129",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R5_to_R2",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 26,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r5:57400:to_R2",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "137",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "137",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R5_to_R6",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 27,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r5:57400:to_R6",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "132",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "132",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          },
+          {
+            "aggregation": "current",
+            "alias": "delay_R6_to_R2",
+            "column": "Time",
+            "dateColumn": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "dateTHData": [
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "0d"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1d"
+              },
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "ge",
+                "level": 0,
+                "value": "-1w"
+              }
+            ],
+            "decimals": 0,
+            "eventData": [],
+            "eventProp": "id",
+            "eventRegEx": false,
+            "gradient": false,
+            "hidden": false,
+            "invert": true,
+            "linkData": [],
+            "linkProp": "id",
+            "linkRegEx": true,
+            "mappingType": 1,
+            "metricType": "serie",
+            "newRule": false,
+            "numberTHData": [
+              {
+                "color": "#ffffff",
+                "comparator": "ge",
+                "level": 0
+              },
+              {
+                "color": "#C4162A",
+                "comparator": "ge",
+                "level": 0,
+                "value": 50000
+              }
+            ],
+            "order": 28,
+            "overlayIcon": false,
+            "pattern": "delay:clab-sr-r6:57400:to_R2",
+            "rangeData": [],
+            "reduce": true,
+            "refId": "A",
+            "sanitize": false,
+            "shapeData": [
+              {
+                "colorOn": "a",
+                "hidden": false,
+                "pattern": "138",
+                "style": "fontColor"
+              }
+            ],
+            "shapeProp": "id",
+            "shapeRegEx": true,
+            "stringTHData": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*/"
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*warning.*/"
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "comparator": "eq",
+                "level": 0,
+                "value": "/.*(success|ok).*/"
+              }
+            ],
+            "textData": [
+              {
+                "hidden": false,
+                "pattern": "138",
+                "textOn": "wmd",
+                "textPattern": "/.*/",
+                "textReplace": "content"
+              }
+            ],
+            "textProp": "id",
+            "textRegEx": true,
+            "tooltip": false,
+            "tooltipColors": false,
+            "tooltipLabel": "",
+            "tooltipOn": "a",
+            "tpDirection": "v",
+            "tpGraph": false,
+            "tpGraphScale": "linear",
+            "tpGraphSize": "100%",
+            "tpGraphType": "line",
+            "type": "number",
+            "unit": "µs",
+            "valueData": []
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "irate(gnmic_sros_port_stats_in_octets[30s])*8",
+          "hide": false,
+          "legendFormat": "{{source}}:{{port_port_id}}:in",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "irate(gnmic_sros_port_stats_out_octets[30s])*8",
+          "hide": false,
+          "legendFormat": "{{source}}:{{port_port_id}}:out",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "gnmic_sros_if_delay_operational",
+          "hide": false,
+          "legendFormat": "delay:{{source}}:{{interface_interface_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Topology",
+      "type": "agenty-flowcharting-panel",
+      "valueName": "current",
+      "version": "1.0.0b"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": false,
+          "text": "clab-sr-r1:57400",
+          "value": "clab-sr-r1:57400"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(source)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "NE",
+        "options": [],
+        "query": {
+          "query": "label_values(source)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "AnySec Telemetry",
+  "uid": "HA2cvWSVz",
+  "version": 1,
+  "weekStart": ""
+}
