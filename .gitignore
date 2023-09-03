@@ -1,4 +1,4 @@
 clab-anysec/
 *.key
 *.log
-.*.clab.y*ml.bak
+.*.y*ml.bak
