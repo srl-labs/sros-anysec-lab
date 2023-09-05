@@ -1,47 +1,88 @@
 name: anysec
+prefix: ""
+
+mgmt:
+  network: anysec
+  ipv4_subnet: 172.10.10.0/24
 
 topology:
+  kinds:
+    vr-sros:
+      image: vrnetlab/vr-sros:23.7.R1
+      license: ./r23_license.key  
+
   nodes:
-    # Ok
     SR-1x-92S:
       kind: vr-sros
-      image: registry.srlinux.dev/pub/vr-sros:23.7.R1
+      mgmt_ipv4: 172.10.10.11
       type: >-
         cp: cpu=2 ram=4 chassis=sr-1x-92s slot=A card=cpm-1x/i80-200g-sfpdd+12-800g-qsfpdd-1x ___ 
         lc: cpu=2 ram=4 max_nics=10 chassis=sr-1x-92s slot=1 card=i80-200g-sfpdd+12-800g-qsfpdd-1x mda/1=m80-200g-sfpdd+12-800g-qsfpdd-1x
-      license: ./r23_license.lic
-      startup-config: configs/sr-1x-92s_config.txt
+      startup-config: configs/core/sr-1x-92s.partial.cfg
 
-    # OK
     SR-1se:
       kind: vr-sros
-      image: registry.srlinux.dev/pub/vr-sros:23.7.R1
+      mgmt_ipv4: 172.10.10.12
       type: >-
         cp: cpu=4 ram=6 chassis=SR-1se slot=A card=cpm-1se ___ 
         lc: cpu=4 ram=6 max_nics=10 chassis=SR-1se slot=1 card=imm36-800g-qsfpdd mda/1=ms36-800g-qsfpdd
-      license: ./r23_license.lic
-      startup-config: configs/sr-1se_config.txt
+      startup-config: configs/core/sr-1se.partial.cfg
     
-    # Ok
     SR-2se:
       kind: vr-sros
-      image: registry.srlinux.dev/pub/vr-sros:23.7.R1
-      #type: "cp: cpu=2 ram=4 chassis=sr-2s slot=A sfm=sfm-2s card=cpm-2s ___ lc: cpu=2 ram=6 max_nics=34 chassis=sr-2s slot=1 sfm=sfm-2s card=xcm-2s mda/1=s18-100gb-qsfp28 ___ lc: cpu=2 ram=6 max_nics=34 chassis=sr-2s slot=2 sfm=sfm-2s card=xcm-2s mda/1=s36-100gb-qsfp28"
+      mgmt_ipv4: 172.10.10.13
       type: >-
         cp: cpu=2 min_ram=4 chassis=sr-2se slot=A sfm=sfm-2se card=cpm-2se ___
-        lc: cpu=4 min_ram=8 max_nics=10 chassis=sr-2se slot=1 sfm=sfm-2se card=xcm-2se mda/1=x2-s36-800g-qsfpdd-18.0t       
-      license: ./r23_license.lic
-      startup-config: configs/sr-2se_config.txt
+        lc: cpu=4 min_ram=8 max_nics=10 chassis=sr-2se slot=1 sfm=sfm-2se card=xcm-2se mda/1=x2-s36-800g-qsfpdd-18.0t
+      startup-config: configs/core/sr-2se.partial.cfg
       
-    # Ok
     SR-7s:
       kind: vr-sros
-      image: registry.srlinux.dev/pub/vr-sros:23.7.R1
+      mgmt_ipv4: 172.10.10.14
       type: >-
         cp: cpu=4 ram=6 chassis=sr-7s slot=A sfm=sfm2-s card=cpm2-s ___ 
-        lc: cpu=4 ram=8 max_nics=10 chassis=sr-7s slot=1 sfm=sfm2-s card=xcm2-7s mda/1=x2-s36-800g-qsfpdd-18.0t 
-      license: ./r23_license.lic
-      startup-config: configs/sr-7s_config.txt
+        lc: cpu=4 ram=8 max_nics=10 chassis=sr-7s slot=1 sfm=sfm2-s card=xcm2-7s mda/1=x2-s36-800g-qsfpdd-18.0t
+      startup-config: configs/core/sr-7s.partial.cfg
+
+
+
+    ### TELEMETRY STACK ###
+    gnmic:
+      kind: linux
+      mgmt_ipv4: 172.10.10.21
+      image: ghcr.io/openconfig/gnmic:0.29.0
+      binds:
+        - configs/gnmic/gnmic-config.yml:/gnmic-config.yml:ro
+      cmd: --config /gnmic-config.yml --log subscribe
+      group: "10" # group 10 is assigned to the nodes of a telemetry stack
+
+    prometheus:
+      kind: linux
+      mgmt_ipv4: 172.10.10.22
+      image: prom/prometheus:v2.35.0
+      binds:
+        - configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      cmd: --config.file=/etc/prometheus/prometheus.yml
+      ports:
+        - 9090:9090
+      group: "10"
+
+    grafana:
+      kind: linux
+      mgmt_ipv4: 172.10.10.23
+      image: grafana/grafana:9.5.2
+      binds:
+        - configs/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+        - configs/grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+        - configs/grafana/dashboards:/var/lib/grafana/dashboards
+      ports:
+        - 3000:3000
+      env:
+        GF_INSTALL_PLUGINS: https://algenty.github.io/flowcharting-repository/archives/agenty-flowcharting-panel-1.0.0d.220606199-SNAPSHOT.zip;agenty-flowcharting-panel    
+      group: "10"
+
+
+
 
   links:
     - endpoints: ["SR-1x-92S:eth1", "SR-1se:eth1"]
