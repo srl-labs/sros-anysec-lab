@@ -9,7 +9,7 @@ topology:
   kinds:
     vr-sros:
       image: vrnetlab/vr-sros:23.7.R1
-      license: ./r23_license.key  
+      license: /opt/nokia/sros/r23_license.key
 
   nodes:
     SR-1x-92S:
