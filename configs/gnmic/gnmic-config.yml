@@ -11,38 +11,34 @@ timeout: 10s
 encoding: json_ietf
 
 targets:
-  SR-1x-92S:57400:
+  r1:57400:
     subscriptions:
       - sros_port_oper_state
       - sros_port_stats
       - sros_port_traffic_rate
       - sros_if_stats
-      - sros_if_delay
       - sros_bgp_anysec_peer
       - sros_bgp_anysec_sec_termination_policy
-  SR-1se:57400:
+  r2:57400:
     subscriptions:
       - sros_port_oper_state
       - sros_port_stats
       - sros_port_traffic_rate
       - sros_if_stats
-      - sros_if_delay
       - sros_bgp_anysec_peer
       - sros_bgp_anysec_sec_termination_policy
-  SR-2se:57400:
+  r3:57400:
       subscriptions:
       - sros_port_oper_state
       - sros_port_stats
       - sros_port_traffic_rate
       - sros_if_stats
-      - sros_if_delay
-  SR-7s:57400:
+  r4:57400:
     subscriptions:
       - sros_port_oper_state
       - sros_port_stats
       - sros_port_traffic_rate
       - sros_if_stats
-      - sros_if_delay
 
 
 subscriptions:
@@ -74,15 +70,6 @@ subscriptions:
     mode: stream
     stream-mode: sample
     sample-interval: 5s
-
-
-  sros_if_delay:
-    paths:
-      - /state/router[router-name=Base]/interface[interface-name=*]/if-attribute/delay
-    mode: stream
-    stream-mode: sample
-    sample-interval: 5s
-
 
   sros_bgp_anysec_peer:
     paths:
