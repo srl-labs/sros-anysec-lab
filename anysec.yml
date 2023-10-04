@@ -3,53 +3,79 @@ prefix: ""
 
 mgmt:
   network: anysec
-  ipv4_subnet: 172.10.10.0/24
+  ipv4-subnet: 172.10.10.0/24
 
 topology:
   kinds:
     vr-sros:
-      image: vrnetlab/vr-sros:23.7.R1
-      license: ./r23_license.key  
+      image: registry.srlinux.dev/pub/vr-sros:23.7.R2
+      license: /opt/nokia/sros/r23_license.key
+    linux:
+      image: ghcr.io/hellt/network-multitool
 
   nodes:
-    SR-1x-92S:
+    ### CORE ###
+    r1:
       kind: vr-sros
-      mgmt_ipv4: 172.10.10.11
+      mgmt-ipv4: 172.10.10.11
       type: >-
         cp: cpu=2 ram=4 chassis=sr-1x-92s slot=A card=cpm-1x/i80-200g-sfpdd+12-800g-qsfpdd-1x ___ 
         lc: cpu=2 ram=4 max_nics=10 chassis=sr-1x-92s slot=1 card=i80-200g-sfpdd+12-800g-qsfpdd-1x mda/1=m80-200g-sfpdd+12-800g-qsfpdd-1x
-      startup-config: configs/core/sr-1x-92s.partial.cfg
+      startup-config: configs/core/r1.partial.cfg
 
-    SR-1se:
+    r2:
       kind: vr-sros
-      mgmt_ipv4: 172.10.10.12
+      mgmt-ipv4: 172.10.10.12
       type: >-
         cp: cpu=4 ram=6 chassis=SR-1se slot=A card=cpm-1se ___ 
         lc: cpu=4 ram=6 max_nics=10 chassis=SR-1se slot=1 card=imm36-800g-qsfpdd mda/1=ms36-800g-qsfpdd
-      startup-config: configs/core/sr-1se.partial.cfg
+      startup-config: configs/core/r2.partial.cfg
     
-    SR-2se:
+    r3:
       kind: vr-sros
-      mgmt_ipv4: 172.10.10.13
+      mgmt-ipv4: 172.10.10.13
       type: >-
         cp: cpu=2 min_ram=4 chassis=sr-2se slot=A sfm=sfm-2se card=cpm-2se ___
         lc: cpu=4 min_ram=8 max_nics=10 chassis=sr-2se slot=1 sfm=sfm-2se card=xcm-2se mda/1=x2-s36-800g-qsfpdd-18.0t
-      startup-config: configs/core/sr-2se.partial.cfg
+      startup-config: configs/core/r3.partial.cfg
       
-    SR-7s:
+    r4:
       kind: vr-sros
-      mgmt_ipv4: 172.10.10.14
+      mgmt-ipv4: 172.10.10.14
       type: >-
         cp: cpu=4 ram=6 chassis=sr-7s slot=A sfm=sfm2-s card=cpm2-s ___ 
         lc: cpu=4 ram=8 max_nics=10 chassis=sr-7s slot=1 sfm=sfm2-s card=xcm2-7s mda/1=x2-s36-800g-qsfpdd-18.0t
-      startup-config: configs/core/sr-7s.partial.cfg
+      startup-config: configs/core/r4.partial.cfg
+
+    ### CLIENTS ###
+    client1:
+      kind: linux
+      mgmt-ipv4: 172.10.10.31
+      binds:
+        - configs/clients/client1:/config
+      exec:
+        - bash /config/eth1.sh
+        - ip address add 172.17.0.1/24 dev eth1
+        - ip -6 address add 2002::172:17:0:1/96 dev eth1
+        - iperf3 -s -p 5214 -D > iperf1_2.log
+      group: server
+    client2:
+      kind: linux
+      mgmt-ipv4: 172.10.10.32
+      binds:
+        - configs/clients/client1:/config
+      exec:
+        - bash /config/eth1.sh
+        - ip address add 172.17.0.2/24 dev eth1
+        - ip -6 address add 2002::172:17:0:2/96 dev eth1
+      group: server
 
 
 
     ### TELEMETRY STACK ###
     gnmic:
       kind: linux
-      mgmt_ipv4: 172.10.10.21
+      mgmt-ipv4: 172.10.10.21
       image: ghcr.io/openconfig/gnmic:0.29.0
       binds:
         - configs/gnmic/gnmic-config.yml:/gnmic-config.yml:ro
@@ -58,7 +84,7 @@ topology:
 
     prometheus:
       kind: linux
-      mgmt_ipv4: 172.10.10.22
+      mgmt-ipv4: 172.10.10.22
       image: prom/prometheus:v2.35.0
       binds:
         - configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -69,7 +95,7 @@ topology:
 
     grafana:
       kind: linux
-      mgmt_ipv4: 172.10.10.23
+      mgmt-ipv4: 172.10.10.23
       image: grafana/grafana:9.5.2
       binds:
         - configs/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
@@ -85,11 +111,13 @@ topology:
 
 
   links:
-    - endpoints: ["SR-1x-92S:eth1", "SR-1se:eth1"]
-    - endpoints: ["SR-1se:eth2", "SR-2se:eth2"]
-    - endpoints: ["SR-2se:eth3", "SR-7s:eth3"]
-    - endpoints: ["SR-1x-92S:eth4", "SR-7s:eth4"]
-    - endpoints: ["SR-1x-92S:eth8", "SR-1x-92S:eth9"]
-    - endpoints: ["SR-1se:eth8", "SR-1se:eth9"]
-    - endpoints: ["SR-2se:eth8", "SR-2se:eth9"]
-    - endpoints: ["SR-7s:eth8", "SR-7s:eth9"]
+    - endpoints: ["r1:eth1", "r2:eth1"]
+    - endpoints: ["r2:eth2", "r3:eth2"]
+    - endpoints: ["r3:eth3", "r4:eth3"]
+    - endpoints: ["r1:eth4", "r4:eth4"]
+    - endpoints: ["r1:eth8", "r1:eth9"]
+    - endpoints: ["r2:eth8", "r2:eth9"]
+    - endpoints: ["r3:eth8", "r3:eth9"]
+    - endpoints: ["r4:eth8", "r4:eth9"]
+    - endpoints: ["client1:eth1", "r1:eth3"]
+    - endpoints: ["client2:eth1", "r2:eth3"]

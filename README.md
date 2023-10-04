@@ -41,11 +41,11 @@ git clone https://github.com/hellt/vrnetlab && cd vrnetlab
 
 # Download qcow2 vSIM image from Nokia support portal (https://customer.nokia.com/support/s) or get one from your Nokia contact. 
 
-# Change name to “sros-vm-<VERSION>.qcow2”
+# Change name to â€œsros-vm-<VERSION>.qcow2â€
 
-# Upload it to ‘vrnetlab/sros’ directory (e.g. /home/vrnetlab/sros)
+# Upload it to â€˜vrnetlab/srosâ€™ directory (e.g. /home/vrnetlab/sros)
 
-# Run ‘make docker-image’ to start the build process
+# Run â€˜make docker-imageâ€™ to start the build process
 
 # Verify existing docker images
 
@@ -75,13 +75,13 @@ vi r23_license.lic
 
 The setup contains four SROS FP5 routers with 23.7R1, howhever only two of them have Anysec configured:
 
-•	SR-1 => Anysec enabled
+â€¢	SR-1 => Anysec enabled
 
-•	SR-1Se => Anysec enabled
+â€¢	SR-1Se => Anysec enabled
 
-•	SR-7s (FP5 only)
+â€¢	SR-7s (FP5 only)
 
-•	SR-14s (FP5 only)
+â€¢	SR-14s (FP5 only)
 
 
 
@@ -96,13 +96,13 @@ The physical setup is the following (for the tests you may shut the interface as
 
 The setup has:
 
-•	Anysec between R1 and R2 (not supported in SR-2s and SR-7s/14s in this release )
+â€¢	Anysec between R1 and R2 (not supported in SR-2s and SR-7s/14s in this release )
 
-•	ISIS 0 with SR-ISIS
+â€¢	ISIS 0 with SR-ISIS
 
-•	iBGP
+â€¢	iBGP
 
-•	Services: VPRN 1003
+â€¢	Services: VPRN 1003
 
 
 
@@ -171,7 +171,7 @@ Example:
 ssh root@10.82.182.179 "ip netns exec clab-anysec-SR-1x-92S tcpdump -U -nni eth1 -w -" | /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
 ```
 
-###Install WSL 
+### Install WSL 
 Open PowerShell or Windows Command Prompt in administrator mode by right-clicking and selecting "Run as administrator", enter the wsl --install command, then restart your machine.
 
 See derails here: https://learn.microsoft.com/en-us/windows/wsl/install
