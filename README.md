@@ -89,10 +89,11 @@ The setup contains four SROS FP5 routers with 23.7R1, howhever only two of them 
 
 The physical setup is the following (for the tests you may shut the interface as ilustrated):
 
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Physical.jpg)
 
 
-
+<p align="center">
+  <img width="500" height="300" src="https://user-images.githubusercontent.com/86619221/274623979-ee5e844c-2696-489d-bc53-81c9b19b33af.PNG">
+</p>
 
 The setup has:
 
@@ -110,9 +111,11 @@ The setup has:
 
 The logical setup is the following (for the tests you may shut the interface as ilustrated):
 
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Setup_Logical.jpg)
 
 
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/86619221/274623975-58cdedd9-15fd-41df-9744-04cbbfc10973.PNG">
+</p>
 
 ## Deploy the lab setup
 
@@ -244,19 +247,23 @@ show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt
 ```
 
 
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_test1_shut_link.jpg)
 
 
+<p align="center">
+  <img width="400" height="300" src="https://user-images.githubusercontent.com/86619221/274623972-2115f64a-e807-423d-96c4-f86e0a1d5165.PNG">
+</p>
 
 ### Test 2 - Disable Anysec at R1 and R2 
 
-Upon Disabe Anysec verify ping is still working but unecripted
+Upon Disable Anysec verify ping is still working but unecripted
 Re-enable Anysec and verify traffic is encrypted again
 
 
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_test2_disable_Anysec.jpg)
 
 
+<p align="center">
+  <img width="600" height="400" src="https://user-images.githubusercontent.com/86619221/274623965-c9ef260f-9e5f-4d72-8361-7688aeafc5c0.PNG">
+</p>
 
 ## Conclusion
 
@@ -267,6 +274,5 @@ CLAB and vSIMs can be used to test and validate the configurations.
 Setup is fully functional with anysec stats increase and packets are encrypted as seen in the TCPDUMP capture.
 Anysec is still a limited feature with no support yet for modular Chassis. 
 More to come in the upcoming releases!
-
 
 
