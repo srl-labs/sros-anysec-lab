@@ -19,6 +19,8 @@ targets:
       - sros_if_stats
       - sros_bgp_anysec_peer
       - sros_bgp_anysec_sec_termination_policy
+      - sros_epipe_instance_oper_state
+      - sros_vprn_instance_oper_state
   r2:57400:
     subscriptions:
       - sros_port_oper_state
@@ -27,6 +29,8 @@ targets:
       - sros_if_stats
       - sros_bgp_anysec_peer
       - sros_bgp_anysec_sec_termination_policy
+      - sros_epipe_instance_oper_state
+      - sros_vprn_instance_oper_state      
   r3:57400:
       subscriptions:
       - sros_port_oper_state
@@ -86,9 +90,19 @@ subscriptions:
     stream-mode: sample
     sample-interval: 1s 
 
+  sros_epipe_instance_oper_state:
+    paths:
+      - /state/service/epipe[service-name=*]/oper-state
+    mode: stream
+    stream-mode: sample
+    sample-interval: 1s
 
-
-
+  sros_vprn_instance_oper_state:
+    paths:
+      - /state/service/vprn[service-name=*]/oper-state
+    mode: stream
+    stream-mode: sample
+    sample-interval: 1s
 
 
 outputs:
