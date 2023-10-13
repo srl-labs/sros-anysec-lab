@@ -4071,7 +4071,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 3,
+        "w": 4,
         "x": 5,
         "y": 42
       },
@@ -4146,8 +4146,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 4,
-        "x": 8,
+        "w": 3,
+        "x": 9,
         "y": 42
       },
       "id": 46,
@@ -4175,7 +4175,7 @@
           "format": "time_series",
           "instant": false,
           "interval": "",
-          "legendFormat": "Delayed Packets ",
+          "legendFormat": "Delayed Packets",
           "refId": "A"
         }
       ],
@@ -4541,7 +4541,7 @@
       "type": "state-timeline"
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -4602,8 +4602,8 @@
     ]
   },
   "time": {
-    "from": "2023-10-13T15:11:42.893Z",
-    "to": "2023-10-13T15:21:42.893Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
