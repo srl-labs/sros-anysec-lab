@@ -3516,7 +3516,7 @@
                 "level": 0
               },
               {
-                "color": "#37872D",
+                "color": "#04d9ff",
                 "comparator": "ge",
                 "level": 0,
                 "value": 1
@@ -3644,7 +3644,7 @@
                 "level": 0
               },
               {
-                "color": "#37872D",
+                "color": "#04d9ff",
                 "comparator": "ge",
                 "level": 0,
                 "value": 1
@@ -3736,7 +3736,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "gnmic_sros_bgp_anysec_peer_config_admin_state",
+          "expr": "gnmic_sros_bgp_anysec_peer_oper_state",
           "hide": false,
           "legendFormat": "any_sec:{{source}}:{{peer_peer_ip_address}}",
           "range": true,
@@ -3748,7 +3748,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "rate(gnmic_sros_bgp_anysec_peer_octets_encrypted[10s])*8",
+          "expr": "rate(gnmic_sros_anysec_peer_octets_encrypted[10s])*8",
           "hide": false,
           "legendFormat": "encrypted_packets:{{source}}:{{peer_peer_ip_address}}:out",
           "range": true,
@@ -3760,7 +3760,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "rate(gnmic_sros_bgp_anysec_peer_octets_decrypted[10s])*8",
+          "expr": "rate(gnmic_sros_anysec_peer_octets_decrypted[10s])*8",
           "hide": false,
           "legendFormat": "decrypted_packets:{{source}}:{{peer_peer_ip_address}}:in",
           "range": true,
@@ -3923,7 +3923,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "gnmic_sros_bgp_anysec_peer_tunnel_id{source=\"$AnySec_EndPoints\"}",
+          "expr": "gnmic_sros_anysec_peer_tunnel_id{source=\"$AnySec_EndPoints\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -4032,7 +4032,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "gnmic_sros_bgp_anysec_peer_oper_state{source=\"$AnySec_EndPoints\"}",
+          "expr": "gnmic_sros_anysec_peer_oper_state{source=\"$AnySec_EndPoints\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -4210,7 +4210,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "gnmic_sros_bgp_anysec_peer_ok_packets{source=\"$AnySec_EndPoints\"}",
+          "expr": "gnmic_sros_anysec_peer_ok_packets{source=\"$AnySec_EndPoints\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -4285,7 +4285,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "gnmic_sros_bgp_anysec_peer_delayed_packets{source=\"$AnySec_EndPoints\"}",
+          "expr": "gnmic_sros_anysec_peer_delayed_packets{source=\"$AnySec_EndPoints\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -4380,7 +4380,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "rate(gnmic_sros_bgp_anysec_peer_octets_encrypted{source=\"$AnySec_EndPoints\"}[30s])*8",
+          "expr": "rate(gnmic_sros_anysec_peer_octets_encrypted{source=\"$AnySec_EndPoints\"}[30s])*8",
           "legendFormat": "Encrypted Packets",
           "range": true,
           "refId": "A"
@@ -4473,7 +4473,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "rate(gnmic_sros_bgp_anysec_peer_octets_decrypted{source=\"$AnySec_EndPoints\"}[30s])*8",
+          "expr": "rate(gnmic_sros_anysec_peer_octets_decrypted{source=\"$AnySec_EndPoints\"}[30s])*8",
           "legendFormat": "Decrypted Packets",
           "range": true,
           "refId": "A"
@@ -4697,14 +4697,14 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "label_values(gnmic_sros_bgp_anysec_peer_oper_state,encryption_group_group_name)",
+        "definition": "label_values(gnmic_sros_anysec_peer_oper_state,encryption_group_group_name)",
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "EncryptionServices",
         "options": [],
         "query": {
-          "query": "label_values(gnmic_sros_bgp_anysec_peer_oper_state,encryption_group_group_name)",
+          "query": "label_values(gnmic_sros_anysec_peer_oper_state,encryption_group_group_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,

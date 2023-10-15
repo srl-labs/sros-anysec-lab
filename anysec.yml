@@ -63,7 +63,7 @@ topology:
       kind: linux
       mgmt-ipv4: 172.10.10.32
       binds:
-        - configs/clients/client1:/config
+        - configs/clients/client2:/config
       exec:
         - bash /config/eth1.sh
         - ip address add 172.17.0.2/24 dev eth1

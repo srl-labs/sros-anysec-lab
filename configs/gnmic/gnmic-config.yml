@@ -17,9 +17,14 @@ targets:
       - sros_port_stats
       - sros_port_traffic_rate
       - sros_if_stats
+<<<<<<< HEAD
       - sros_bgp_anysec_peer
       - sros_bgp_anysec_peer_config
       - sros_bgp_anysec_sec_termination_policy
+=======
+      - sros_anysec_peer
+      - sros_anysec_sec_termination_policy
+>>>>>>> e96392e5431ed82845f86646e7a6faa024bf08bf
       - sros_epipe_instance_oper_state
       - sros_vprn_instance_oper_state
   r2:57400:
@@ -28,9 +33,14 @@ targets:
       - sros_port_stats
       - sros_port_traffic_rate
       - sros_if_stats
+<<<<<<< HEAD
       - sros_bgp_anysec_peer
       - sros_bgp_anysec_peer_config
       - sros_bgp_anysec_sec_termination_policy
+=======
+      - sros_anysec_peer
+      - sros_anysec_sec_termination_policy
+>>>>>>> e96392e5431ed82845f86646e7a6faa024bf08bf
       - sros_epipe_instance_oper_state
       - sros_vprn_instance_oper_state      
   r3:57400:
@@ -78,7 +88,7 @@ subscriptions:
     sample-interval: 1s
 
 
-  sros_bgp_anysec_peer:
+  sros_anysec_peer:
     paths:
       - /state/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
       - /configure/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
@@ -90,10 +100,10 @@ subscriptions:
     paths:
       - /configure/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
     mode: stream
-    stream-mode: sample
+    stream-mode: target-defined
     sample-interval: 1s 
 
-  sros_bgp_anysec_sec_termination_policy:
+  sros_anysec_sec_termination_policy:
     paths:
       - /state/anysec/tunnel-encryption/security-termination-policy[policy-name=*]
     mode: stream
