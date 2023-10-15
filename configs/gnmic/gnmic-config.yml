@@ -18,6 +18,7 @@ targets:
       - sros_port_traffic_rate
       - sros_if_stats
       - sros_bgp_anysec_peer
+      - sros_bgp_anysec_peer_config
       - sros_bgp_anysec_sec_termination_policy
       - sros_epipe_instance_oper_state
       - sros_vprn_instance_oper_state
@@ -28,6 +29,7 @@ targets:
       - sros_port_traffic_rate
       - sros_if_stats
       - sros_bgp_anysec_peer
+      - sros_bgp_anysec_peer_config
       - sros_bgp_anysec_sec_termination_policy
       - sros_epipe_instance_oper_state
       - sros_vprn_instance_oper_state      
@@ -79,6 +81,14 @@ subscriptions:
   sros_bgp_anysec_peer:
     paths:
       - /state/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
+      - /configure/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
+    mode: stream
+    stream-mode: sample
+    sample-interval: 1s 
+  
+  sros_bgp_anysec_peer_config:
+    paths:
+      - /configure/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
     mode: stream
     stream-mode: sample
     sample-interval: 1s 
@@ -136,6 +146,7 @@ processors:
     event-strings:
       value-names:
         - oper-state
+        - admin-state
       transforms:
         - replace:
             apply-on: "value"
@@ -144,4 +155,12 @@ processors:
         - replace:
             apply-on: "value"
             old: "down"
+            new: "0"
+        - replace:
+            apply-on: "value"
+            old: "enable"
+            new: "1"
+        - replace:
+            apply-on: "value"
+            old: "disable"
             new: "0"
