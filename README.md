@@ -234,8 +234,11 @@ show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt
 
 ## Demo Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ka6-zXaPYGI?si=jVeRHIonLzpNHT1G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+<div align="left">
+      <a href="https://www.youtube.com/watch?v=Ka6-zXaPYGI">
+         <img src="https://img.youtube.com/vi/Ka6-zXaPYGI/0.jpg" style="width:100%;">
+      </a>
+</div>
 
 
 ## Tests
