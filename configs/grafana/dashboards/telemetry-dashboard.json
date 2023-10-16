@@ -3516,7 +3516,7 @@
                 "level": 0
               },
               {
-                "color": "#04d9ff",
+                "color": "#73BF69",
                 "comparator": "ge",
                 "level": 0,
                 "value": 1
@@ -3644,7 +3644,7 @@
                 "level": 0
               },
               {
-                "color": "#04d9ff",
+                "color": "#73BF69",
                 "comparator": "ge",
                 "level": 0,
                 "value": 1
@@ -3736,7 +3736,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "gnmic_sros_bgp_anysec_peer_oper_state",
+          "expr": "gnmic_sros_anysec_peer_config_admin_state",
           "hide": false,
           "legendFormat": "any_sec:{{source}}:{{peer_peer_ip_address}}",
           "range": true,
