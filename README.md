@@ -234,7 +234,7 @@ show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt
 
 ## Demo Video
 
-[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://github.com/srlinuxeurope/SROS_CLAB_FP5_Anysec/blob/main/pics/Demo_anysec_srExpertsPT_v2.mov)
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/Ka6-zXaPYGI/0.jpg)](https://youtu.be/Ka6-zXaPYGI)
 
 
 ## Tests
