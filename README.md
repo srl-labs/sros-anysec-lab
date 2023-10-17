@@ -180,6 +180,35 @@ Open PowerShell or Windows Command Prompt in administrator mode by right-clickin
 See derails here: https://learn.microsoft.com/en-us/windows/wsl/install
 
 
+
+## SROS Streaming Telemetry
+
+This lab was enhanced with Streaming Telemetry by adding gNIMc, Prometheus and Grafana.
+For details please refer to: 
+https://github.com/srl-labs/srl-sros-telemetry-lab
+
+
+
+### Telemetry stack
+
+As the lab name suggests, telemetry is at its core. The following stack of software solutions has been chosen for this lab:
+
+| Role                | Software                              |
+| ------------------- | ------------------------------------- |
+| Telemetry collector | [gnmic](https://gnmic.openconfig.net) |
+| Time-Series DB      | [prometheus](https://prometheus.io)   |
+| Visualization       | [grafana](https://grafana.com)        |
+
+
+
+### Access details
+
+* Grafana: <http://localhost:3000>. Built-in user credentials: `admin/admin`
+* Prometheus: <http://localhost:9090/graph>
+
+
+
+
 ## Execute the test
 
 Once the Tcpdump capture is running you may start the test by testing ICMP from R1 to R2 within VPRN 1003:
