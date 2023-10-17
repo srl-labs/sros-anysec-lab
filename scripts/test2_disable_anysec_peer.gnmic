@@ -23,6 +23,10 @@ gnmic -a r1:57400 -u admin -p admin --insecure set --update-path /configure/anys
 gnmic -a r2:57400 -u admin -p admin --insecure set --update-path /configure/anysec/tunnel-encryption/encryption-group[group-name=EG_Anysec]/peer[peer-ip-address=1.1.1.1]/admin-state --update-value disable
 
 
+#gnmic -a r1:57400 -u admin -p admin --insecure set --update-path /configure/anysec/tunnel-encryption/encryption-group[group-name=EG_Anysec]/admin-state --update-value disable
+#gnmic -a r2:57400 -u admin -p admin --insecure set --update-path /configure/anysec/tunnel-encryption/encryption-group[group-name=EG_Anysec]/admin-state --update-value disable
+
+
 
 echo -e "
 
