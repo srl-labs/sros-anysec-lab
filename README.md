@@ -62,11 +62,11 @@ Note: After import the image, edit the yml file with the correct location.
 
 ### License file
 
-SROS vSIMs require a valid license. You need to get a valid license from Nokia and place it in the "r23_license.lic" file.
+SROS vSIMs require a valid license. You need to get a valid license from Nokia and place it in the "/r23_license.key" file.
 ```bash
-# Copy/paste the license to the "r23_license.lic" file
+# Copy/paste the license to the "r23_license.key" file
 cd SROS_CLAB_FP5_Anysec/
-vi r23_license.lic
+vi r23_license.key
 ```
 
 
