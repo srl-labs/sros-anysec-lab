@@ -113,6 +113,22 @@ topology:
 
 
 
+    ### Automation STACK ###
+    gnmic:
+      kind: linux
+      mgmt-ipv4: 172.10.10.24
+      image: nginx:1.25.2-alpine-slim
+      binds:
+        - configs/gnmic/disable_anysec.php:/disable_anysec.php:ro
+        - configs/gnmic/disable_port.php:/disable_port.php:ro
+        - configs/gnmic/enable_anysec.php:/enable_anysec.php:ro
+        - configs/gnmic/enable_port.php:/enable_port.php:ro
+      ### cmd: --config /gnmic-config.yml --log subscribe
+      ports:
+        - 8080:8080
+      group: "10" # group 10 is assigned to the nodes of a telemetry stack
+
+
 
   links:
     - endpoints: ["r1:eth1", "r2:eth1"]
