@@ -114,7 +114,7 @@ topology:
 
 
     ### Automation STACK ###
-    gnmic:
+    nginx:
       kind: linux
       mgmt-ipv4: 172.10.10.24
       image: nginx:1.25.2-alpine-slim
