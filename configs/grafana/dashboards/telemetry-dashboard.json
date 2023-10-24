@@ -42,6 +42,35 @@
     },
     {
       "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "id": 47,
+      "options": {
+        "backgroundColor": "green",
+        "contentType": "application/json",
+        "foregroundColor": "#ccccdc",
+        "icon": "lock",
+        "isAuth": false,
+        "method": "GET",
+        "orientation": "left",
+        "text": "Enable   AnySec",
+        "type": "header",
+        "url": "http://g10.dcfpartnerws.net/enable_anysec.php",
+        "variant": "custom"
+      },
+      "title": "AnySec Control Panel",
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -72,9 +101,9 @@
       "format": "short",
       "graphId": "flowchart_16",
       "gridPos": {
-        "h": 35,
-        "w": 24,
-        "x": 0,
+        "h": 16,
+        "w": 18,
+        "x": 4,
         "y": 1
       },
       "id": 16,
@@ -3487,7 +3516,7 @@
                 "level": 0
               },
               {
-                "color": "#04d9ff",
+                "color": "#73BF69",
                 "comparator": "ge",
                 "level": 0,
                 "value": 1
@@ -3615,7 +3644,7 @@
                 "level": 0
               },
               {
-                "color": "#04d9ff",
+                "color": "#73BF69",
                 "comparator": "ge",
                 "level": 0,
                 "value": 1
@@ -3707,7 +3736,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "gnmic_sros_anysec_peer_oper_state",
+          "expr": "gnmic_sros_anysec_peer_config_admin_state",
           "hide": false,
           "legendFormat": "any_sec:{{source}}:{{peer_peer_ip_address}}",
           "range": true,
@@ -3744,12 +3773,97 @@
       "version": "1.0.0d"
     },
     {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 4
+      },
+      "id": 49,
+      "options": {
+        "backgroundColor": "red",
+        "contentType": "application/json",
+        "foregroundColor": "#ccccdc",
+        "icon": "unlock",
+        "isAuth": false,
+        "method": "GET",
+        "orientation": "left",
+        "text": "Disable AnySec",
+        "type": "header",
+        "url": "http://g10.dcfpartnerws.net/disable_anysec.php",
+        "variant": "custom"
+      },
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 8
+      },
+      "id": 50,
+      "options": {
+        "backgroundColor": "green",
+        "contentType": "application/json",
+        "foregroundColor": "#ccccdc",
+        "icon": "power",
+        "isAuth": false,
+        "method": "GET",
+        "orientation": "left",
+        "text": "Enable Interface",
+        "type": "header",
+        "url": "http://g10.dcfpartnerws.net/enable_port.php",
+        "variant": "custom"
+      },
+      "title": "Interface Control Panel",
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 11
+      },
+      "id": 48,
+      "options": {
+        "backgroundColor": "red",
+        "contentType": "application/json",
+        "foregroundColor": "#ccccdc",
+        "icon": "power",
+        "isAuth": false,
+        "method": "GET",
+        "orientation": "left",
+        "text": "Disable Interface",
+        "type": "header",
+        "url": "http://g10.dcfpartnerws.net/disable_port.php",
+        "variant": "custom"
+      },
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 17
       },
       "id": 18,
       "panels": [],
@@ -3786,7 +3900,7 @@
         "h": 10,
         "w": 5,
         "x": 0,
-        "y": 37
+        "y": 18
       },
       "id": 8,
       "options": {
@@ -3894,7 +4008,7 @@
         "h": 5,
         "w": 7,
         "x": 5,
-        "y": 37
+        "y": 18
       },
       "id": 10,
       "options": {
@@ -3993,7 +4107,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 37
+        "y": 18
       },
       "id": 43,
       "options": {
@@ -4073,7 +4187,7 @@
         "h": 5,
         "w": 4,
         "x": 5,
-        "y": 42
+        "y": 23
       },
       "id": 11,
       "options": {
@@ -4148,7 +4262,7 @@
         "h": 5,
         "w": 3,
         "x": 9,
-        "y": 42
+        "y": 23
       },
       "id": 46,
       "options": {
@@ -4244,7 +4358,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 47
+        "y": 28
       },
       "id": 30,
       "options": {
@@ -4337,7 +4451,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 47
+        "y": 28
       },
       "id": 44,
       "options": {
@@ -4420,7 +4534,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 47
+        "y": 28
       },
       "id": 32,
       "options": {
@@ -4506,7 +4620,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 47
+        "y": 28
       },
       "id": 45,
       "options": {
@@ -4598,6 +4712,27 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "2",
+          "value": "2"
+        },
+        "hide": 1,
+        "includeAll": false,
+        "multi": false,
+        "name": "panels",
+        "options": [
+          {
+            "selected": true,
+            "text": "2",
+            "value": "2"
+          }
+        ],
+        "query": "2",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
