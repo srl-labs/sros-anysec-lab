@@ -19,14 +19,8 @@ echo -e "
 
 
 ## Test 2 - Enable Anysec r1 peer 2.2.2.2 & r2 peer 1.1.1.1
-
-
 gnmic -a r1:57400 -u admin -p admin --insecure set --update-path /configure/anysec/tunnel-encryption/encryption-group[group-name=EG_Anysec]/peer[peer-ip-address=2.2.2.2]/admin-state --update-value enable
 gnmic -a r2:57400 -u admin -p admin --insecure set --update-path /configure/anysec/tunnel-encryption/encryption-group[group-name=EG_Anysec]/peer[peer-ip-address=1.1.1.1]/admin-state --update-value enable
-
-
-#gnmic -a r1:57400 -u admin -p admin --insecure set --update-path /configure/anysec/tunnel-encryption/encryption-group[group-name=EG_Anysec]/admin-state --update-value enable
-#gnmic -a r2:57400 -u admin -p admin --insecure set --update-path /configure/anysec/tunnel-encryption/encryption-group[group-name=EG_Anysec]/admin-state --update-value enable
 
 
 

@@ -114,19 +114,25 @@ topology:
 
 
     ### Automation STACK ###
-    nginx:
+    xampp:
       kind: linux
       mgmt-ipv4: 172.10.10.24
-      image: nginx:1.25.2-alpine-slim
+      image: tomsik68/xampp:latest
       binds:
-        - nginx/disable_anysec.php:/disable_anysec.php:ro
-        - nginx/disable_port.php:/disable_port.php:ro
-        - nginx/enable_anysec.php:/enable_anysec.php:ro
-        - nginx/enable_port.php:/enable_port.php:ro
-      ### cmd: --config /gnmic-config.yml --log subscribe
+        - nginx/disable_anysec.php:/opt/lampp/htdocs/disable_anysec.php:rw
+        - nginx/disable_port.php:/opt/lampp/htdocs/disable_port.php:rw
+        - nginx/enable_anysec.php:/opt/lampp/htdocs/enable_anysec.php:rw
+        - nginx/enable_port.php:/opt/lampp/htdocs/enable_port.php:rw
+        - scripts/test2_disable_anysec_peer.gnmic:/opt/lampp/htdocs/test2_disable_anysec_peer.gnmic:rw
+        - scripts/test1_disable_port.gnmic:/opt/lampp/htdocs/test1_disable_port.gnmic:rw
+        - scripts/test2_enable_anysec_peer.gnmic:/opt/lampp/htdocs/test2_enable_anysec_peer.gnmic:rw
+        - scripts/test1_enable_port.gnmic:/opt/lampp/htdocs/test1_enable_port.gnmic:rw
+        - scripts/install_gnmic.sh:/tmp/install_gnmic.sh:rw
+      exec:
+        - echo "NGINX gnmpic install"
+        - /bin/bash /tmp/install_gnmic.sh &
       ports:
-        - 8080:8080
-      group: "10" # group 10 is assigned to the nodes of a telemetry stack
+        - 9080:80
 
 
 
