@@ -127,7 +127,7 @@ topology:
         - scripts/test1_disable_port.gnmic:/opt/lampp/htdocs/test1_disable_port.gnmic:rw
         - scripts/test2_enable_anysec_peer.gnmic:/opt/lampp/htdocs/test2_enable_anysec_peer.gnmic:rw
         - scripts/test1_enable_port.gnmic:/opt/lampp/htdocs/test1_enable_port.gnmic:rw
-        - scripts/install_gnmic.sh:/tmp/install_gnmic.sh:rw
+        - configs/xampp/install_gnmic.sh:/tmp/install_gnmic.sh:rw
       exec:
         - echo "NGINX gnmpic install"
         - /bin/bash /tmp/install_gnmic.sh &
