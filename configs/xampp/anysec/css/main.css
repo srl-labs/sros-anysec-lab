@@ -1,0 +1,18 @@
+.error
+{
+    color:red;
+	font-weight:bold;
+}
+
+#userInfo
+{
+	valign:top;
+}
+
+#userInfo tr td
+{
+	color:#CCCCCC;
+	font-weight:bold;
+	font-size:15px;
+
+}
