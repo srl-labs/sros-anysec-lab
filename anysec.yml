@@ -119,15 +119,17 @@ topology:
       mgmt-ipv4: 172.10.10.24
       image: tomsik68/xampp:latest
       binds:
-        - nginx/disable_anysec.php:/opt/lampp/htdocs/disable_anysec.php:rw
-        - nginx/disable_port.php:/opt/lampp/htdocs/disable_port.php:rw
-        - nginx/enable_anysec.php:/opt/lampp/htdocs/enable_anysec.php:rw
-        - nginx/enable_port.php:/opt/lampp/htdocs/enable_port.php:rw
+        - scripts/disable_anysec.php:/opt/lampp/htdocs/disable_anysec.php:rw
+        - scripts/disable_port.php:/opt/lampp/htdocs/disable_port.php:rw
+        - scripts/enable_anysec.php:/opt/lampp/htdocs/enable_anysec.php:rw
+        - scripts/enable_port.php:/opt/lampp/htdocs/enable_port.php:rw
         - scripts/test2_disable_anysec_peer.gnmic:/opt/lampp/htdocs/test2_disable_anysec_peer.gnmic:rw
         - scripts/test1_disable_port.gnmic:/opt/lampp/htdocs/test1_disable_port.gnmic:rw
         - scripts/test2_enable_anysec_peer.gnmic:/opt/lampp/htdocs/test2_enable_anysec_peer.gnmic:rw
-        - scripts/test1_enable_port.gnmic:/opt/lampp/htdocs/test1_enable_port.gnmic:rw
+        - scripts/test1_enable_port.gnmic:/opt/lampp/htdocs/test1_enable_port.gnmic:rw        
+          #- scripts/:/opt/lampp/htdocs/:rw
         - configs/xampp/install_gnmic.sh:/tmp/install_gnmic.sh:rw
+        - configs/xampp/anysec/:/opt/lampp/htdocs/:rw
       exec:
         - echo "NGINX gnmpic install"
         - /bin/bash /tmp/install_gnmic.sh &
