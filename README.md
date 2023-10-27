@@ -123,7 +123,9 @@ The logical setup for the VLL 1001 is the following (Tests with ICMP or iPerf be
 
 
 
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/53ee647e132ca214a031c6bb18fa48dda6a20ab5/pics/vll.png)
+<p align="center">
+  <img width="750" height="400" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/53ee647e132ca214a031c6bb18fa48dda6a20ab5/pics/vll.png">
+</p>
 
 
 
