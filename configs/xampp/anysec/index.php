@@ -142,8 +142,8 @@ a {
 <!-- Footer	 -->
 <tr><td height="43" colspan="3" bgcolor="#CCCCCC" align="center"><div align="center">		
 
-	<font color="#000000"><strong>..::
-  	<a href="mailto:someone@nokia.com?subject=SRX Demo Portal" style="color:blue">Contacts</a> 
+	<font color="#005AFF"><strong>..::
+  	<a href="mailto:someone@nokia.com?subject=SRX Demo Portal" style="color:#005AFF;">Contacts</a> 
 	::..</strong></font> 
 	
 </td></tr>
