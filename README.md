@@ -132,6 +132,7 @@ The logical setup for the VLL 1001 is the following (Tests with ICMP or iPerf be
 ## Deploy the lab setup
 
 Use the comand below to deploy the lab:
+
 Note: If you imported the SROS image to docker then first edit the yml file with the correct image location as explained above.
 
 ```bash
@@ -198,11 +199,14 @@ See derails here: https://learn.microsoft.com/en-us/windows/wsl/install
 ## SROS Streaming Telemetry and Automation
 
 This lab was enhanced with Streaming Telemetry by adding gNIMc, Prometheus and Grafana.
+
 For details please refer to: 
 https://github.com/srl-labs/srl-sros-telemetry-lab
 
 It includes automation for the tests using gNMIC scripts invoked through PHP. There are 2 tests:
+
 1 - disable/enable the top link to see ANYSec packets flowing through the bottom nodes.
+
 2 - disable/enable ANYSec to see packets being sent in clear or encrypted on demand
 
 To execute these tests there are 4 
