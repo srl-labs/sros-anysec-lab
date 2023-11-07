@@ -115,7 +115,7 @@ The logical setup for the VPRN 1003 is the following (Tests with ICMP between PE
 
 
 <p align="center">
-  <img width="750" height="400" src="https://user-images.githubusercontent.com/86619221/274623975-58cdedd9-15fd-41df-9744-04cbbfc10973.PNG">
+  <img width="750" height="400" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/vprn.jpg?raw=true">
 </p>
 
 
@@ -124,7 +124,7 @@ The logical setup for the VLL 1001 is the following (Tests with ICMP or iPerf be
 
 
 <p align="center">
-  <img width="500" height="300" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/53ee647e132ca214a031c6bb18fa48dda6a20ab5/pics/vll.png">
+  <img width="750" height="400" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/vll.jpg?raw=true">
 </p>
 
 
