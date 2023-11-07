@@ -62,7 +62,7 @@
         "orientation": "left",
         "text": "Enable   AnySec",
         "type": "header",
-        "url": "http://localhost:9080/enable_anysec.php",
+        "url": "http://g10.dcfpartnerws.net/enable_anysec.php",
         "variant": "custom"
       },
       "title": "AnySec Control Panel",
@@ -3794,7 +3794,7 @@
         "orientation": "left",
         "text": "Disable AnySec",
         "type": "header",
-        "url": "http://localhost:9080/disable_anysec.php",
+        "url": "http://g10.dcfpartnerws.net/disable_anysec.php",
         "variant": "custom"
       },
       "transparent": true,
@@ -3822,7 +3822,7 @@
         "orientation": "left",
         "text": "Enable Interface",
         "type": "header",
-        "url": "http://localhost:9080/enable_port.php",
+        "url": "http://g10.dcfpartnerws.net/enable_port.php",
         "variant": "custom"
       },
       "title": "Interface Control Panel",
@@ -3851,7 +3851,7 @@
         "orientation": "left",
         "text": "Disable Interface",
         "type": "header",
-        "url": "http://localhost:9080/disable_port.php",
+        "url": "http://g10.dcfpartnerws.net/disable_port.php",
         "variant": "custom"
       },
       "transparent": true,
@@ -4175,8 +4175,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -4246,8 +4245,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -4341,8 +4339,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -4434,8 +4431,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -4518,8 +4514,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -4604,8 +4599,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -4686,53 +4680,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "EG_Anysec",
-          "value": "EG_Anysec"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
-        },
-        "definition": "label_values(gnmic_sros_anysec_peer_oper_state,encryption_group_group_name)",
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "EncryptionServices",
-        "options": [],
-        "query": {
-          "query": "label_values(gnmic_sros_anysec_peer_oper_state,encryption_group_group_name)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 2,
-        "regex": "EG_Anysec",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "2",
-          "value": "2"
-        },
-        "hide": 1,
-        "includeAll": false,
-        "multi": false,
-        "name": "panels",
-        "options": [
-          {
-            "selected": true,
-            "text": "2",
-            "value": "2"
-          }
-        ],
-        "query": "2",
-        "skipUrlSync": false,
-        "type": "custom"
       }
     ]
   },
