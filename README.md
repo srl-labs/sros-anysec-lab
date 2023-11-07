@@ -93,7 +93,7 @@ The physical setup is the following (for the tests you may shut the interface as
 
 
 <p align="center">
-  <img width="500" height="300" src="https://user-images.githubusercontent.com/86619221/274623979-ee5e844c-2696-489d-bc53-81c9b19b33af.PNG">
+  <img width="500" height="300" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/physical-setup.jpg?raw=true">
 </p>
 
 The setup has:
@@ -328,7 +328,7 @@ show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt
 
 
 <p align="center">
-  <img width="400" height="300" src="https://user-images.githubusercontent.com/86619221/274623972-2115f64a-e807-423d-96c4-f86e0a1d5165.PNG">
+  <img width="400" height="300" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/LINK-DOWN.jpg?raw=true">
 </p>
 
 ### Test 2 - Disable Anysec at R1 and R2 
@@ -340,7 +340,7 @@ Re-enable Anysec and verify traffic is encrypted again
 
 
 <p align="center">
-  <img width="600" height="400" src="https://user-images.githubusercontent.com/86619221/274623965-c9ef260f-9e5f-4d72-8361-7688aeafc5c0.PNG">
+  <img width="600" height="400" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/ANYSEC-DISABLE.jpg?raw=true">
 </p>
 
 ## Conclusion
