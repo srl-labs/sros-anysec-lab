@@ -241,20 +241,16 @@ Verify that you're able to access all nodes (PEs and clients) and the platforms 
 Start a Tcpdump/wireshark capture and start traffic between PE1 and PE2 under VPRN 1003.
 
 ```bash
-A:admin@R1_sr-1x-92s# ping 2.2.2.2 router-instance 1003 
-PING 2.2.2.2 56 data bytes
-64 bytes from 2.2.2.2: icmp_seq=1 ttl=64 time=8.35ms.
-64 bytes from 2.2.2.2: icmp_seq=2 ttl=64 time=2.63ms.
-64 bytes from 2.2.2.2: icmp_seq=3 ttl=64 time=2.26ms.
-64 bytes from 2.2.2.2: icmp_seq=4 ttl=64 time=2.15ms.
-64 bytes from 2.2.2.2: icmp_seq=5 ttl=64 time=2.26ms.
+A:admin@r1# ping 2.2.2.2 router-instance 1003  count 100000 interval 0.01 output-format summary size 2000
+PING 2.2.2.2 2000 data bytes
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ping aborted by user
 
 ---- 2.2.2.2 PING Statistics ----
-5 packets transmitted, 5 packets received, 0.00% packet loss
-round-trip min = 2.15ms, avg = 3.53ms, max = 8.35ms, stddev = 2.42ms
+636 packets transmitted, 636 packets received, 0.00% packet loss
+round-trip min = 5.96ms, avg = 7.54ms, max = 20.9ms, stddev = 0.000ms
 
 [/]
-A:admin@R1_sr-1x-92s# 
+A:admin@r1# 
 ```
 
 You may also test ICMP or iPerf between client1 and 2 (uses VLL 1001).
