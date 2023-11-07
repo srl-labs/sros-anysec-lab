@@ -93,7 +93,7 @@ The physical setup is the following (for the tests you may shut the interface as
 
 
 <p align="center">
-  <img width="750" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/physical-setup.jpg?raw=true">
+  <img width="800" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/physical-setup.jpg?raw=true">
 </p>
 
 The setup has:
@@ -115,7 +115,7 @@ The logical setup for the VPRN 1003 is the following (Tests with ICMP between PE
 
 
 <p align="center">
-  <img width="750" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/vprn.jpg?raw=true">
+  <img width="800" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/vprn.jpg?raw=true">
 </p>
 
 
@@ -124,7 +124,7 @@ The logical setup for the VLL 1001 is the following (Tests with ICMP or iPerf be
 
 
 <p align="center">
-  <img width="750" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/vll.jpg?raw=true">
+  <img width="800" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/vll.jpg?raw=true">
 </p>
 
 
@@ -328,7 +328,7 @@ show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt
 
 
 <p align="center">
-  <img width="750" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/LINK-DOWN.jpg?raw=true">
+  <img width="800" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/LINK-DOWN.jpg?raw=true">
 </p>
 
 ### Test 2 - Disable Anysec at R1 and R2 
@@ -340,7 +340,7 @@ Re-enable Anysec and verify traffic is encrypted again
 
 
 <p align="center">
-  <img width="750" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/ANYSEC-DISABLE.jpg?raw=true">
+  <img width="800" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/ANYSEC-DISABLE.jpg?raw=true">
 </p>
 
 ## Conclusion
