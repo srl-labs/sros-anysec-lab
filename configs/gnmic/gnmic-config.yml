@@ -54,28 +54,28 @@ subscriptions:
       - /state/port[port-id=*]/oper-state
     mode: stream
     stream-mode: sample
-    sample-interval: 5s
+    sample-interval: 1s
 
   sros_port_stats:
     paths:
       - /state/port[port-id=*]/statistics
     mode: stream
     stream-mode: sample
-    sample-interval: 5s
+    sample-interval: 1s
 
   sros_port_traffic_rate:
     paths:
       - /state/port[port-id=*]/ethernet/oper-speed
     mode: stream
     stream-mode: sample
-    sample-interval: 5s
+    sample-interval: 1s
 
   sros_if_stats:
     paths:
       - /state/router[router-name=Base]/interface[interface-name=*]/statistics
     mode: stream
     stream-mode: sample
-    sample-interval: 5s
+    sample-interval: 1s
 
 
   sros_anysec_peer:
@@ -83,35 +83,35 @@ subscriptions:
       - /state/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
     mode: stream
     stream-mode: sample
-    sample-interval: 5s 
+    sample-interval: 1s 
   
   sros_anysec_peer_config:
     paths:
       - /configure/anysec/tunnel-encryption/encryption-group[group-name=*]/peer[peer-ip-address=*]
     mode: stream
     stream-mode: target-defined
-    sample-interval: 5s 
+    sample-interval: 1s 
 
   sros_anysec_sec_termination_policy:
     paths:
       - /state/anysec/tunnel-encryption/security-termination-policy[policy-name=*]
     mode: stream
     stream-mode: sample
-    sample-interval: 5s 
+    sample-interval: 1s 
 
   sros_epipe_instance_oper_state:
     paths:
       - /state/service/epipe[service-name=*]/oper-state
     mode: stream
     stream-mode: sample
-    sample-interval: 5s
+    sample-interval: 1s
 
   sros_vprn_instance_oper_state:
     paths:
       - /state/service/vprn[service-name=*]/oper-state
     mode: stream
     stream-mode: sample
-    sample-interval: 5s
+    sample-interval: 1s
 
 
 outputs:
