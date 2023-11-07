@@ -31,7 +31,7 @@ git clone https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec.git
 
 ### SROS Image
 
-The SROS vSIMs image files are available under Nokia's internal registry. 
+The SROS vSIMs image file used is 23.10R1, and is available under Nokia's internal registry. 
 If you don't have access to it, then you must get the SROS image and manually import them to CLAB following the instructions here: https://containerlab.dev/manual/vrnetlab/#vrnetlab
 
 The stepts are:
@@ -55,9 +55,9 @@ docker images | grep -E "srlinux|vr-sros"
 Note: After import the image, edit the yml file with the correct location.
 ```bash
 # replace this 
-      image: registry.srlinux.dev/pub/vr-sros:23.7.R1
+      image: registry.srlinux.dev/pub/vr-sros:23.10.R1
 # with this:
-      image: vrnetlab/vr-sros:23.7.R3
+      image: vrnetlab/vr-sros:23.10.R1
 ```
 
 ### License file
@@ -74,7 +74,7 @@ vi r23_license.key
 
 ## Anysec setup
 
-The setup contains four SROS FP5 routers with 23.7R1, howhever only two of them have Anysec configured:
+The setup contains four SROS FP5 routers with 23.10R1, howhever only two of them have Anysec configured:
 
 •	SR-1 => Anysec enabled
 
