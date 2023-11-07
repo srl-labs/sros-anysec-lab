@@ -62,7 +62,7 @@
         "orientation": "left",
         "text": "Enable   AnySec",
         "type": "header",
-        "url": "http://g10.dcfpartnerws.net/enable_anysec.php",
+        "url": "http://localhost:9080/enable_anysec.php",
         "variant": "custom"
       },
       "title": "AnySec Control Panel",
@@ -3794,7 +3794,7 @@
         "orientation": "left",
         "text": "Disable AnySec",
         "type": "header",
-        "url": "http://g10.dcfpartnerws.net/disable_anysec.php",
+        "url": "http://localhost:9080/disable_anysec.php",
         "variant": "custom"
       },
       "transparent": true,
@@ -3822,7 +3822,7 @@
         "orientation": "left",
         "text": "Enable Interface",
         "type": "header",
-        "url": "http://g10.dcfpartnerws.net/enable_port.php",
+        "url": "http://localhost:9080/enable_port.php",
         "variant": "custom"
       },
       "title": "Interface Control Panel",
@@ -3851,7 +3851,7 @@
         "orientation": "left",
         "text": "Disable Interface",
         "type": "header",
-        "url": "http://g10.dcfpartnerws.net/disable_port.php",
+        "url": "http://localhost:9080/disable_port.php",
         "variant": "custom"
       },
       "transparent": true,
