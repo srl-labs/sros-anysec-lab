@@ -172,11 +172,11 @@ Follows an example on how to list the interfaces (links) of a given container an
 # list the containers running in the server
 clab inspect -a 
 # list the interfaces (links) of a given container
-ip netns exec clab-anysec-SR-1x-92S ip link
+ip netns exec r1 ip link
 # Start a capture and display packets in the session
-ip netns exec clab-anysec-SR-1x-92S tcpdump -nni eth1
+ip netns exec r1 tcpdump -nni eth1
 # Start a capture and store the packets in the file
-ip netns exec clab-anysec-SR-1x-92S tcpdump -nni eth1 -w capture_file.pcap
+ip netns exec r1 tcpdump -nni eth1 -w capture_file.pcap
 ```
 
 
@@ -186,7 +186,7 @@ Windows users should use WSL and invoke the command similar to the following:
 ```bash
 ssh $containerlab_host_address "ip netns exec $lab_node_name tcpdump -U -nni $if_name -w -" | /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
 Example:
-ssh root@10.82.182.179 "ip netns exec clab-anysec-SR-1x-92S tcpdump -U -nni eth1 -w -" | /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
+ssh root@10.82.182.179 "ip netns exec r1 tcpdump -U -nni eth1 -w -" | /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
 ```
 
 ### Install WSL 
