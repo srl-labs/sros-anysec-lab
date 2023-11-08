@@ -224,6 +224,18 @@ The following stack of software solutions has been chosen for this lab:
 | Web Server/gnmic    | [xampp](https://www.apachefriends.org/)| 9080               | http://localhost:9080/             |                    |
 
 
+
+The following picture picture ilustrates the Telemetry and Automation stack:
+
+
+
+<p align="center">
+  <img width="900" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/telemetry_automation.jpg?raw=true">
+</p>
+
+
+
+
 ### Access details
 
 If you are accessing from a remote host, then replace localhost by the CLAB Server IP address
