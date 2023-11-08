@@ -3,15 +3,15 @@
 
 ANYSec is a Nokia technology that provides low-latency and line-rate native encryption for any transport (IP, MPLS, segment routing, Ethernet or VLAN), on any service, at any time and for any load conditions without impacting performance.
 
-This lab provides an Anysec demo (https://www.nokia.com/networks/technologies/fp5/) based on Nokia SROS FP5 vSIMs running at CLAB (https://containerlab.dev/).
+This lab provides an Anysec demo based on Nokia SROS FP5 (https://www.nokia.com/networks/technologies/fp5/) vSIMs running at CLAB (https://containerlab.dev/).
 
 
 
 
 ## Anysec Overview
-Anysec is a Nokia network encryption solution available with the new FP5 models in SROS 23.3R3 and 23.7R1. 
-It is quantum safe, low-latency line-rate encryption, and aims to be the future network encryption standard in the industry.
-It is a simple concept, it uses MacSec standards as the foundation and introduces the flexibility to offset the authentication and encription to allow L2, L2.5 and L3 encryption.
+Anysec is a Nokia network encryption solution available with the new FP5 models in SROS 23.10R1. 
+It is low-latency line-rate encryption, scalable, flexible and ensures a quantum-safe network encryption solution for the industry.
+It is a simple concept, based on MacSec standards as the foundation and introduces the flexibility to offset the authentication and encription to allow L2, L2.5 and L3 encryption.
 
 
 
@@ -104,7 +104,7 @@ The setup has:
 
 •	iBGP
 
-•	Services: VLL 1001, VPLS 1002 (not used), VPRN 1003
+•	Services: VLL 1001 and VPRN 1003
 
 
 
@@ -244,11 +244,11 @@ Start a Tcpdump/wireshark capture and start traffic between PE1 and PE2 under VP
 ```bash
 A:admin@r1# ping 2.2.2.2 router-instance 1003  count 100000 interval 0.01 output-format summary size 2000
 PING 2.2.2.2 2000 data bytes
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ping aborted by user
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ping aborted by user
 
 ---- 2.2.2.2 PING Statistics ----
-636 packets transmitted, 636 packets received, 0.00% packet loss
-round-trip min = 5.96ms, avg = 7.54ms, max = 20.9ms, stddev = 0.000ms
+68 packets transmitted, 68 packets received, 0.00% packet loss
+round-trip min = 3.98ms, avg = 5.17ms, max = 19.1ms, stddev = 0.000ms
 
 [/]
 A:admin@r1# 
