@@ -287,14 +287,38 @@ You may shut the link between these nodes to force the use of SR-ISIS that goes 
 You may also disable Anysec to view packets in clear.
 
 
-Wireshark does not have native support for decoding ANYSec MACsec (802.1AE) headers.
-Nokia has an internal version with a protocol dissector for MACsec / 802.1a headers.
+### Wireshark ANYSec Decoding
+
+
+
+Wireshark does not have native support for decoding ANYSec MACsec (802.1AE) headers. 
+Nokia has an internal version with a protocol dissector for ANYSec MACsec / 802.1a headers.
 This is the output comparison between the public wireshark and the Nokia's version:
 
 
 ![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Wireshark.jpg)
 
 
+With the public Wireshark, the ANYSec header is shown as part of the payload.
+
+
+### Anysec Stack
+
+The ANYSec introduces the MACSec Header and the Encryption SID (ES) label between the SR-ISIS transport and VPRN service labels. The VPRN service label is encrypted.
+The picture below provides an example of the ANYSec label stack between R1 and R2.
+
+
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Stack.jpg?raw=true)
+
+
+
+### Capture multiple interfaces 
+
+TCPDUMP on a single interface shows label stack correctly (Ethernet+VLAN+MPLS+ANYSec)
+TCPDUMP on a multiple interfaces shows a distinct stack: Linux cooked capture v2 + additional MPLS Label (instead of Ethernet + VLAN)
+
+
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Tcpdump.jpg?raw=true)
 
 
 
