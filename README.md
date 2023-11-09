@@ -292,7 +292,7 @@ Nokia has an internal version with a protocol dissector for MACsec / 802.1a head
 This is the output comparison between the public wireshark and the Nokia's version:
 
 
-![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Wireshark.png)
+![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Wireshark.jpg)
 
 
 
