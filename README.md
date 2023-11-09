@@ -287,6 +287,7 @@ You may shut the link between these nodes to force the use of SR-ISIS that goes 
 You may also disable Anysec to view packets in clear.
 
 
+
 ### Wireshark ANYSec Decoding
 
 
@@ -302,7 +303,10 @@ This is the output comparison between the public wireshark and the Nokia's versi
 With the public Wireshark, the ANYSec header is shown as part of the payload.
 
 
+
+
 ### Anysec Stack
+
 
 The ANYSec introduces the MACSec Header and the Encryption SID (ES) label between the SR-ISIS transport and VPRN service labels. The VPRN service label is encrypted.
 The picture below provides an example of the ANYSec label stack between R1 and R2.
@@ -312,13 +316,16 @@ The picture below provides an example of the ANYSec label stack between R1 and R
 
 
 
+
 ### Capture multiple interfaces 
+
 
 TCPDUMP on a single interface shows label stack correctly (Ethernet+VLAN+MPLS+ANYSec)
 TCPDUMP on a multiple interfaces shows a distinct stack: Linux cooked capture v2 + additional MPLS Label (instead of Ethernet + VLAN)
 
 
 ![pic1](https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/Anysec_Tcpdump.jpg?raw=true)
+
 
 
 
@@ -338,12 +345,6 @@ show router "1003" route-table
 show router bgp routes 2.2.2.2/32 vpn-ipv4 hunt   
 ```
 
-## Demo Video
-
-The Demo Video shows the Grafana Dashboard, the wireshark and the CLI with ICMP. Two tests are performed: disable/enable the top link and disable/enable ANYSec.
-
-
-[![Watch the video](http://img.youtube.com/vi/Ka6-zXaPYGI/maxresdefault.jpg)](https://youtu.be/Ka6-zXaPYGI)
 
 
 ## Tests
@@ -379,6 +380,22 @@ Re-enable Anysec and verify traffic is encrypted again
 <p align="center">
   <img width="900" height="500" src="https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec/blob/main/pics/ANYSEC-DISABLE.jpg?raw=true">
 </p>
+
+
+
+
+
+## Demo Video
+
+The Demo Video shows the Grafana Dashboard, the wireshark and the CLI with ICMP. Two tests are performed: disable/enable the top link and disable/enable ANYSec.
+
+
+[![Watch the video](http://img.youtube.com/vi/Ka6-zXaPYGI/maxresdefault.jpg)](https://youtu.be/Ka6-zXaPYGI)
+
+
+
+
+
 
 ## Conclusion
 
