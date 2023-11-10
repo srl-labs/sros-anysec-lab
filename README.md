@@ -251,34 +251,18 @@ Another option is to establish a SSH to the CLAB Server with tunneling from loca
 ## Verify the setup
 
 Verify that you're able to access all nodes (PEs and clients) and the platforms (Grafana, Prometheus and Demo Page).
-Start a Tcpdump/wireshark capture and start traffic between PE1 and PE2 under VPRN 1003.
-
-```bash
-A:admin@r1# ping 2.2.2.2 router-instance 1003  count 100000 interval 0.01 output-format summary size 2000
-PING 2.2.2.2 2000 data bytes
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ping aborted by user
-
----- 2.2.2.2 PING Statistics ----
-68 packets transmitted, 68 packets received, 0.00% packet loss
-round-trip min = 3.98ms, avg = 5.17ms, max = 19.1ms, stddev = 0.000ms
-
-[/]
-A:admin@r1# 
-```
-
-You may also test ICMP or iPerf between client1 and 2 (uses VLL 1001).
+Start a Tcpdump/wireshark capture and start ICMP traffic between client1 and 2 (uses VLL 1001) using the traffic.sh script.
 
 ```bash
 ### Ping from Client 1 to Client 2
-bash-5.0# ping -c 2 172.17.0.2      
-PING 172.17.0.2 (172.17.0.2) 56(84) bytes of data.
-64 bytes from 172.17.0.2: icmp_seq=1 ttl=64 time=4.37 ms
-64 bytes from 172.17.0.2: icmp_seq=2 ttl=64 time=3.75 ms
-
---- 172.17.0.2 ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1002ms
-rtt min/avg/max/mdev = 3.748/4.059/4.371/0.311 ms
-bash-5.0# 
+django@orchestra:~/sros-anysec-lab$ ./traffic.sh start-icmp 1-2
+starting traffic between clients 1 and 2
+PING 2002::172:17:0:2(2002::172:17:0:2) 1450 data bytes
+1458 bytes from 2002::172:17:0:2: icmp_seq=1 ttl=64 time=4.41 ms
+1458 bytes from 2002::172:17:0:2: icmp_seq=2 ttl=64 time=2.31 ms
+1458 bytes from 2002::172:17:0:2: icmp_seq=3 ttl=64 time=2.26 ms
+1458 bytes from 2002::172:17:0:2: icmp_seq=4 ttl=64 time=3.61 ms
+^C
 ```
 
 
