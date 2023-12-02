@@ -23,7 +23,7 @@ To deploy these labs, you must clone these labs to your server with "git clone".
 # change to your working directory
 cd /home/user/
 # Clone the lab to your server
-git clone https://github.com/tiago-amado/SROS_CLAB_FP5_Anysec.git
+git clone https://github.com/srl-labs/sros-anysec-lab.git
 ```
 
 
